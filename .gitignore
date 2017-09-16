@@ -1,0 +1,17 @@
+# list of folders not to be included in
+/spike
+/build
+/bin
+
+# list of files not to be included in
+*.o
+*.exe
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+
+
+# exception
+!cppcheck.log

@@ -1,0 +1,60 @@
+{
+  "variant": {
+    "label": "Debug",
+    "keywordSettings": {
+      "buildType": "debug"
+    },
+    "description": "Emit debug information without performing optimizations"
+  },
+  "activeEnvironments": [],
+  "codeModel": {
+    "configurations": [
+      {
+        "name": "Debug",
+        "projects": [
+          {
+            "buildDirectory": "D:/Dropbox/collaborate/khoa/mick/build",
+            "name": "project",
+            "sourceDirectory": "D:/Dropbox/collaborate/khoa/mick",
+            "targets": [
+              {
+                "artifacts": [
+                  "D:/Dropbox/collaborate/khoa/mick/bin/project.exe",
+                  "D:/Dropbox/collaborate/khoa/mick/build/src/libproject.dll.a",
+                  "D:/Dropbox/collaborate/khoa/mick/bin/project.pdb"
+                ],
+                "buildDirectory": "D:/Dropbox/collaborate/khoa/mick/build/src",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wall -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
+                    "includePath": [
+                      {
+                        "path": "D:/Dropbox/collaborate/khoa/mick/include"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "main.cpp",
+                      "debug.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "project.exe",
+                "linkLanguageFlags": "-Wall -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g",
+                "linkLibraries": "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+                "linkerLanguage": "CXX",
+                "name": "project",
+                "sourceDirectory": "D:/Dropbox/collaborate/khoa/mick/src",
+                "type": "EXECUTABLE"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cookie": "0.9847603856084519",
+    "inReplyTo": "codemodel",
+    "type": "reply"
+  }
+}
