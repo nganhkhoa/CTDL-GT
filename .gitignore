@@ -1,7 +1,7 @@
 # list of folders not to be included in
 /spike
 /build
-/bin
+/bin/*.exe
 
 # list of files not to be included in
 *.o
