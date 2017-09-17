@@ -15,6 +15,18 @@ namespace lab
             intList->printReverse();
             intList->sort();
             std::cout << *intList << std::endl;
+
+            // copy cons test
+            data::LinkedList<int>* copyList =
+               new data::LinkedList<int>(*intList);
+
+            // operator= test
+            data::LinkedList<int>* operatorList =
+               new data::LinkedList<int>(List, 5);
+            operatorList = intList;
+
+            std::cout << *copyList << std::endl;
+            std::cout << *operatorList << std::endl;
       }
 
       void polynomialTest() {

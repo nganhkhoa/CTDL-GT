@@ -69,7 +69,7 @@ class LinkedList {
       }
 
       friend std::ostream& operator<<(std::ostream& o, const LinkedList& l) {
-            node<data_type>* runNode = l.getNode(0);    // get head
+            node<data_type>* runNode = l.head();    // get head
             if (runNode == NULL) {
                   o << "NULL";
                   return o;
@@ -116,9 +116,14 @@ class LinkedList {
       }
 
       LinkedList(const LinkedList<data_type>& l) {
-            this->~LinkedList();
             while (_size < l.size())
                   insertEnd(l[_size]);
+      }
+
+      LinkedList<T>& operator=(const LinkedList<data_type>& l) {
+            this->~LinkedList();
+            LinkedList<data_type>* result = new LinkedList<T>(l);
+            return *result;
       }
 
       virtual ~LinkedList() {
