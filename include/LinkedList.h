@@ -30,18 +30,21 @@ class LinkedList {
       node*  _tail;
 
       void init() {
-            _size = 0;
-            _head = new node();
+            _size       = 0;
+            _head       = new node();
+            _tail       = new node();
+            _head->next = _tail;
+            _tail->prev = _head;
       }
 
     public:
       class const_iterator {
           protected:
-            node*      current;
-            data_type& retrieve() const {
+            const LinkedList<data_type>* list;
+            node*                        current;
+            data_type&                   retrieve() const {
                   return current->data;
             }
-            const LinkedList<data_type>* list;
 
             const_iterator(const LinkedList<data_type>& l, node* n)
                 : list(&l), current(n) {}
@@ -50,7 +53,7 @@ class LinkedList {
                   if (
                      (list == NULL) || (current == NULL) ||
                      (current == list->_head))
-                        throw IteratorOutOfBoundException();
+                        throw "IteratorOutOfBoundException";
             }
 
             friend class LinkedList<data_type>;
@@ -63,28 +66,29 @@ class LinkedList {
             }
 
             // ++node
-            const_iterator& operator++() const {
+            const_iterator& operator++() {
                   current = current->next;
                   return *this;
             }
             // node++
-            const_iterator operator++(int) const {
+            const_iterator operator++(int) {
                   const_iterator old = *this;
                   ++(*this);
                   return old;
             }
 
-            bool operator==(const const_iterator& it) {
+            bool operator==(const const_iterator& it) const {
                   return current == it.current;
             }
-            bool operator!=(const const_iterator& it) {
+            bool operator!=(const const_iterator& it) const {
                   return !((*this) == it);
             }
       };
 
       class iterator : public const_iterator {
           protected:
-            iterator(node* n) : const_iterator(n) {}
+            iterator(const LinkedList<data_type>& l, node* n)
+                : const_iterator(l, n) {}
             friend class LinkedList<data_type>;
 
           public:
@@ -99,7 +103,7 @@ class LinkedList {
 
             // ++node
             iterator operator++() {
-                  current = current->next;
+                  this->current = this->current->next;
                   return (*this);
             }
             // node++
@@ -113,19 +117,19 @@ class LinkedList {
 
     public:
       iterator begin() {
-            const_iterator it(*this, _head);
+            iterator it(*this, _head);
             return ++it;
       }
-      iterator end() {
-            return _tail;
+      const_iterator begin() const {
+            const_iterator it(*this, _head);
+            return ++it;
       }
 
-      const_iterator begin() {
-            const_iterator it(*this, _head);
-            return ++it;
+      iterator end() {
+            return {*this, _tail};
       }
-      const_iterator end() {
-            return _tail;
+      const_iterator end() const {
+            return {*this, _tail};
       }
 
       size_t size() const {
@@ -148,6 +152,7 @@ class LinkedList {
       const data_type& front() const {
             return *begin();
       }
+
       data_type& back() {
             return *--end();
       }
@@ -169,6 +174,14 @@ class LinkedList {
             erase(--end());
       }
 
+      friend std::ostream&
+         operator<<(std::ostream& o, const LinkedList<data_type>& l) {
+            for (auto it = l.begin(); it != l.end(); it++)
+                  o << *it << " --> ";
+            o << " NULL";
+            return o;
+      }
+
     public:
       LinkedList() {
             init();
@@ -183,7 +196,7 @@ class LinkedList {
       LinkedList(data_type (&arr)[size]) {}
       LinkedList(data_type* arr, size_t size) {}
 
-      LinkedList& operator=(cosnt LinkedList& l) {
+      LinkedList& operator=(const LinkedList& l) {
             clear();
             for (auto& x : l)
                   push_back(x);
@@ -197,10 +210,10 @@ class LinkedList {
       }
 
     public:
-      iterator insert(iterator it, const& data_type& d) {
+      iterator insert(iterator it, const data_type& d) {
             it.valid();
             if (it.list != this)
-                  throw IteratorMismatchException();
+                  throw "IteratorMismatchException";
 
 
             node* n = it.current;
@@ -218,7 +231,7 @@ class LinkedList {
             return returnValue;
       }
       iterator erase(iterator from, iterator to) {
-            for (auto it = from, it != to;)
+            for (auto it = from; it != to;)
                   it = erase(it);
             return to;
       }
