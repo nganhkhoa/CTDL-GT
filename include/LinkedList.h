@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+namespace book
+{
+
 template <class data_type>
 class LinkedList {
     public:
@@ -110,14 +113,16 @@ class LinkedList {
 
     public:
       iterator begin() {
-            return _head->next;
+            const_iterator it(*this, _head);
+            return ++it;
       }
       iterator end() {
             return _tail;
       }
 
       const_iterator begin() {
-            return _head->next;
+            const_iterator it(*this, _head);
+            return ++it;
       }
       const_iterator end() {
             return _tail;
@@ -193,14 +198,19 @@ class LinkedList {
 
     public:
       iterator insert(iterator it, const& data_type& d) {
+            it.valid();
+            if (it.list != this)
+                  throw IteratorMismatchException();
+
+
             node* n = it.current;
             _size++;
-            return {n->prev = n->prev->next = new node(d, n->prev, n)};
+            return {*this, n->prev = n->prev->next = new node(d, n->prev, n)};
       }
 
       iterator erase(iterator it) {
             node*    n = it.current;
-            iterator returnValue(n->next);
+            iterator returnValue(*this, n->next);
             n->next->prev = n->prev;
             n->prev->next = n->next;
             delete n;
@@ -213,5 +223,5 @@ class LinkedList {
             return to;
       }
 };
-
+}    // namespace book
 #endif
