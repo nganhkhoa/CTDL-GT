@@ -183,14 +183,20 @@ namespace lab
       int  sumDownBy2(int);
       void secretGardenTest();
       void labTest();
-}
+}    // namespace lab
 
 namespace tut
 {
       bool isPrime(int);
-      void onePrime(int*, int);
-      void allPrime(int*, int);
-      int  Fibonacci(int);
+
+      template <int n>
+      void          onePrime(int[n]);
+      void          onePrime(int*, int);
+
+      template <int n>
+      void          allPrime(int[n]);
+      void          allPrime(int*, int);
+      int           Fibonacci(int);
 
 
       struct node
@@ -217,7 +223,7 @@ namespace tut
       void  nodeTest();
 
       void tutTest();
-}
+}    // namespace tut
 }
 
 #endif

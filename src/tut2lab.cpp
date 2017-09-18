@@ -10,7 +10,7 @@ namespace lab
 {
       void LinkedListTest() {
             int                    List[5] = {5, 8, 3, 2, 9};
-            data::LinkedList<int>* intList = new data::LinkedList<int>(List, 5);
+            data::LinkedList<int>* intList = new data::LinkedList<int>(List);
             std::cout << *intList << std::endl;
             intList->printReverse();
             intList->sort();
@@ -22,7 +22,7 @@ namespace lab
 
             // operator= test
             data::LinkedList<int>* operatorList =
-               new data::LinkedList<int>(List, 5);
+               new data::LinkedList<int>(List);
             operatorList = intList;
 
             std::cout << *copyList << std::endl;
@@ -82,6 +82,17 @@ namespace tut
             return true;
       }
 
+      template <int n>
+      void          onePrime(int (&arr)[n]) {
+            if (n == 0)
+                  return;
+            if (isPrime(*arr)) {
+                  std::cout << *arr << " ";
+                  return;
+            }
+            return onePrime(arr + 1, n - 1);
+      }
+
       void onePrime(int* arr, int n) {
             if (n == 0)
                   return;
@@ -90,6 +101,15 @@ namespace tut
                   return;
             }
             return onePrime(arr + 1, n - 1);
+      }
+
+      template <int n>
+      void          allPrime(int (&arr)[n]) {
+            if (n == 0)
+                  return;
+            if (isPrime(*arr))
+                  std::cout << *arr << " ";
+            return allPrime(arr + 1, n - 1);
       }
 
       void allPrime(int* arr, int n) {
@@ -298,9 +318,9 @@ namespace tut
       void tutTest() {
             std::cout << "Prime test\n";
             int arr[] = {1, 2, 3, 4, 5, 6};
-            onePrime(arr, 6);
+            onePrime(arr);
             std::cout << std::endl;
-            allPrime(arr, 6);
+            allPrime(arr);
             std::cout << std::endl;
 
             std::cout << "Node test\n";

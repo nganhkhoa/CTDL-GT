@@ -12,6 +12,7 @@ struct node
       typedef T data_type;
       data_type _data;
       node*     _next;
+      node*     _pre = NULL;
 
       node(const data_type& t) : _data(t), _next(NULL) {}
 };
@@ -107,6 +108,14 @@ class LinkedList {
             _head = NULL;
             while (size--)
                   insertHead(List[size]);
+      }
+
+      template <int size>
+      LinkedList(data_type (&List)[size]) {
+            _size = 0;
+            _head = NULL;
+            while (_size != size)
+                  insertHead(List[_size]);
       }
 
       LinkedList(const data_type& d) {

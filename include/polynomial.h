@@ -10,6 +10,10 @@ template <class T>
 class Polynomial : public data::LinkedList<T> {
     public:
       Polynomial() : data::LinkedList<T>() {}
+
+      template <int size>
+      Polynomial(T (&List)[size]) : data::LinkedList<T>(List) {}
+
       Polynomial(T* List, int size) : data::LinkedList<T>(List, size) {}
       ~Polynomial() {}
 
@@ -29,8 +33,9 @@ class Polynomial : public data::LinkedList<T> {
 
             data::node<T>* runNode = NULL;
             while (size > 0) {
-                  runNode = p.getNode(--size);    // size is now power
-                  T& data = runNode->_data;
+                  runNode    = p.getNode(--size);    // size is now power
+                  int& power = size;
+                  T&   data  = runNode->_data;
 
                   if (data == 0)
                         continue;
@@ -41,20 +46,20 @@ class Polynomial : public data::LinkedList<T> {
                         o << " + ";
 
                   if (abs(data) == 1) {
-                        if (size == 0)
+                        if (power == 0)
                               continue;
-                        else if (size == 1)
+                        else if (power == 1)
                               o << "x";
                         else
-                              o << "x^" << size;
+                              o << "x^" << power;
                   }
                   else {
-                        if (size == 0)
+                        if (power == 0)
                               o << abs(data);
-                        else if (size == 1)
+                        else if (power == 1)
                               o << abs(data) << "x";
                         else
-                              o << abs(data) << "x^" << size;
+                              o << abs(data) << "x^" << power;
                   }
             }
             return o;
