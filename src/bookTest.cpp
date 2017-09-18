@@ -8,5 +8,8 @@ void LinkedListTest() {
       List.push_back(1);
       List.push_front(-1);
       std::cout << List << std::endl;
+      std::cout << List[0] << std::endl;
+      std::cout << List[1] << std::endl;
+      std::cout << List[2] << std::endl;
 }
 }

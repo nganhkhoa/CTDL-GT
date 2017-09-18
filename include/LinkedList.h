@@ -193,8 +193,16 @@ class LinkedList {
       }
 
       template <size_t size>
-      LinkedList(data_type (&arr)[size]) {}
-      LinkedList(data_type* arr, size_t size) {}
+      LinkedList(data_type (&arr)[size]) {
+            init();
+            for (size_t i = 0; i < size; i++)
+                  push_back(arr[i]);
+      }
+      LinkedList(data_type* arr, size_t size) {
+            init();
+            for (size_t i = 0; i < size; i++)
+                  push_back(arr[i]);
+      }
 
       LinkedList& operator=(const LinkedList& l) {
             clear();
@@ -215,7 +223,6 @@ class LinkedList {
             if (it.list != this)
                   throw "IteratorMismatchException";
 
-
             node* n = it.current;
             _size++;
             return {*this, n->prev = n->prev->next = new node(d, n->prev, n)};
@@ -234,6 +241,15 @@ class LinkedList {
             for (auto it = from; it != to;)
                   it = erase(it);
             return to;
+      }
+
+      data_type& operator[](size_t index) {
+            if (index < 0 || index >= _size)
+                  throw "Index out of range";
+            auto it = begin();
+            while (index-- > 0)
+                  it++;
+            return *it;
       }
 };
 }    // namespace book
