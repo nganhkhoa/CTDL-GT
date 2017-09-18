@@ -27,7 +27,7 @@ class Matrix {
       }
 
       // top left is (0,0)
-      // bottom right (-_col, -_row)
+      // bottom right (-(_col - 1), -(_row - 1))
       T& operator[](const Coordinate& c) {
             return _value[(int) (-1 * c.y() * _col + c.x())];
       }
