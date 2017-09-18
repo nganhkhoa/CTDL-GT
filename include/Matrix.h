@@ -2,7 +2,7 @@
 #define MATRIX_H
 
 #include <iostream>
-#include <coordinate.h>
+#include <Coordinate.h>
 
 namespace data
 {

@@ -1,7 +1,7 @@
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 
-#include <linkedList.h>
+#include <my_LinkedList.h>
 #include <iostream>
 
 namespace data

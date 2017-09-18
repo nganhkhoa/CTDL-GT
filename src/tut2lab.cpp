@@ -1,6 +1,6 @@
 #include <tut2lab.h>
-#include <polynomial.h>
-#include <linkedList.h>
+#include <Polynomial.h>
+#include <my_LinkedList.h>
 
 #include <iostream>
 

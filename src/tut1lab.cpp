@@ -4,7 +4,7 @@
 #include <debug.h>
 
 
-#include <matrix.h>
+#include <Matrix.h>
 namespace week1
 {
 namespace lab

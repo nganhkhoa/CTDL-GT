@@ -5,9 +5,9 @@
 #include <ctime>
 #include <cmath>
 
-#include <linkedList.h>
-#include <coordinate.h>
-#include <matrix.h>
+#include <my_LinkedList.h>
+#include <Coordinate.h>
+#include <Matrix.h>
 
 
 namespace week2
