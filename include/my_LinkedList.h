@@ -1,30 +1,43 @@
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef MY_LINKEDLIST_H
+#define MY_LINKEDLIST_H
 
 #include <iostream>
 
 namespace data
 {
-
-template <class T>
-struct node
-{
-      typedef T data_type;
-      data_type _data;
-      node*     _next;
-      node*     _pre = NULL;
-
-      node(const data_type& t) : _data(t), _next(NULL) {}
-};
-
-
-template <class T>
+template <class data_type>
 class LinkedList {
-      typedef T data_type;
+      typedef int size_t;
 
     protected:
-      int              _size = 0;
-      node<data_type>* _head = NULL;
+      struct node
+      {
+            data_type data;
+            node*     next;
+            node*     prev = NULL;
+
+            node(
+               const data_type& t = data_type(),
+               node*            n = NULL,
+               node*            p = NULL)
+                : data(t), next(n), prev(p) {}
+      };
+
+      size_t _size;
+      node*  _head = NULL;
+      node*  _tail = NULL;
+
+      virtual void init() {
+            // the list: [head] -> [0] -> [1] <-> [tail] -> NULL
+            // init: [head] <-> [tail] -> NULL
+            // virtual for doubly and circularly
+            _head       = new node();
+            _tail       = new node();
+            _head->next = _tail;
+            _tail->next = NULL;
+            _tail->prev = _head;
+            _size       = 0;
+      }
 
       //
       // ─── COMMON FUNCTION
@@ -32,7 +45,7 @@ class LinkedList {
       //
 
     public:
-      int size() const {
+      size_t size() const {
             return _size;
       }
 
@@ -40,56 +53,74 @@ class LinkedList {
             return _size == 0;
       }
 
-      node<data_type>* tail() const {
-            node<data_type>* tail = _head;
-            if (tail != NULL)
-                  while (tail->_next != NULL)
-                        tail = tail->_next;
-            return tail;
+      void clear() {
+            while (!isEmpty())
+                  removeEnd();
       }
 
-      node<data_type>* head() const {
-            return _head;
+
+      //
+      // ─── RETRIVE
+      // ────────────────────────────────────────────────────────────────────
+      //
+
+      node* begin() const {
+            return _head->next;
       }
 
-      node<data_type>* getNode(int place) const {
-            if (place >= _size)
-                  return NULL;
-            node<data_type>* returnNode = _head;
-            for (int i = 0; i < place; i++)
-                  returnNode = returnNode->_next;
-            return returnNode;
+      node* begin() {
+            return _head->next;
       }
 
-      data_type& operator[](int place) {
-            return getNode(place)->_data;
+      node* end() const {
+            return _tail->prev;
       }
 
-      const data_type& operator[](int place) const {
-            return getNode(place)->_data;
+      node* end() {
+            return _tail->prev;
       }
 
-      friend std::ostream& operator<<(std::ostream& o, const LinkedList& l) {
-            node<data_type>* runNode = l.head();    // get head
-            if (runNode == NULL) {
-                  o << "NULL";
-                  return o;
+      node* getNode(size_t place) {
+            node* temp = begin();
+            while (place-- > 0)
+                  temp = temp->next;
+            return temp;
+      }
+
+      node* getNode(size_t place) const {
+            node* temp = begin();
+            while (place-- > 0)
+                  temp = temp->next;
+            return temp;
+      }
+
+      data_type& operator[](size_t place) {
+            auto temp = begin();
+            while (place-- > 0)
+                  temp = temp->next;
+            return temp->data;
+      }
+
+      data_type& operator[](size_t place) const {
+            auto temp = begin();
+            while (place-- > 0)
+                  temp = temp->next;
+            return temp->data;
+      }
+
+      friend std::ostream&
+         operator<<(std::ostream& o, const LinkedList<data_type>& l) {
+            if (!l.isEmpty()) {
+                  auto temp = l.begin();
+                  auto end  = l.end();
+                  while (temp != end) {
+                        o << temp->data << " --> ";
+                        temp = temp->next;
+                  }
+                  o << temp->data << " --> ";
             }
-            while (runNode->_next != NULL) {
-                  o << runNode->_data << " --> ";
-                  runNode = runNode->_next;
-            }
-            o << runNode->_data << " --> NULL";
+            o << "NULL";
             return o;
-      }
-
-      void printReverse() {
-            if (_size == 0)
-                  return;
-            std::cout << "NULL <-- ";
-            for (int i = _size - 1; i > 0; i--)
-                  std::cout << getNode(i)->_data << " <-- ";
-            std::cout << _head->_data << std::endl;
       }
 
       //
@@ -99,47 +130,47 @@ class LinkedList {
 
     public:
       LinkedList() {
-            _size = 0;
-            _head = NULL;
+            init();
       }
 
       LinkedList(data_type* List, int size) {
-            _size = 0;
-            _head = NULL;
+            init();
             while (size--)
                   insertHead(List[size]);
       }
 
       template <int size>
       LinkedList(data_type (&List)[size]) {
-            _size = 0;
-            _head = NULL;
+            init();
             while (_size != size)
                   insertHead(List[_size]);
       }
 
       LinkedList(const data_type& d) {
-            _size = 0;
-            _head = NULL;
+            init();
             insertEnd(d);
       }
 
       LinkedList(const LinkedList<data_type>& l) {
+            init();
             while (_size < l.size())
                   insertEnd(l[_size]);
       }
 
-      LinkedList<T>& operator=(const LinkedList<data_type>& l) {
-            this->~LinkedList();
-            LinkedList<data_type>* result = new LinkedList<T>(l);
-            return *result;
+      LinkedList<data_type>& operator=(const LinkedList<data_type>& l) {
+            clear();
+            while (_size < l.size())
+                  insertEnd(l[_size]);
+            return *this;
       }
 
       virtual ~LinkedList() {
-            while (_size > 0)
-                  removeEnd();
+            clear();
+            delete _tail;
+            _tail = NULL;
+            delete _head;
+            _head = NULL;
       }
-
 
       //
       // ─── INSERT
@@ -147,129 +178,82 @@ class LinkedList {
       //
 
     protected:
-      // to be inherited
-      // insertHead & insertAfter & insertEnd
-      // is to be redefined
-      // doubly linkedlist is different from this
-      virtual void insert(node<data_type>* preNode, node<data_type>* newNode) {
-            if (preNode == _head || isEmpty()) {
-                  // head and empty
-                  newNode->_next = _head;
-                  _head          = newNode;
-            }
-            else {
-                  // middle and last
-                  newNode->_next = preNode->_next;
-                  preNode->_next = newNode;
-            }
+      virtual void insert(node* prev, node* newNode) {
+            newNode->next = prev->next;
+            prev->next    = newNode;
             _size++;
       }
 
-      virtual void insertHead(node<data_type>* newNode) {
-            insert(_head, newNode);
-      }
-
-
-      virtual void insertAfter(node<data_type>* newNode, int place) {
-            if (place >= _size)
-                  return;
-            insert(getNode(place), newNode);
-      }
-
-
-      virtual void insertEnd(node<data_type>* newNode) {
-            if (_size == 1) {
-                  // after head
-                  // insert(_head) add new head
-                  _head->_next = newNode;
-                  _size++;
-            }
-            else
-                  insert(tail(), newNode);
-      }
-
     public:
-      void insertHead(const data_type& t) {
-            insertHead(new node<data_type>(t));
-      }
-      void insertAfter(const data_type& t, int place) {
-            insertAfter(new node<data_type>(t), place);
+      void insertHead(const data_type& d) {
+            if (isEmpty())
+                  insertEnd(d);
+            else
+                  insert(_head, new node(d));
       }
 
-      void insertEnd(const data_type& t) {
-            insertEnd(new node<data_type>(t));
+      void insertEnd(const data_type& d) {
+            // [n] <-> [_tail] -> NULL
+            insert(_tail->prev, new node(d));
+            // [n] -> new -> [_tail] -> NULL
+            //  ^~~~~~~~~~~~~~~<|
+            // but [_tail] -> prev is still [n]
+            _tail->prev = _tail->prev->next;
       }
+
+      void insertAt(size_t place, const data_type& d) {
+            if (place == 0)
+                  insertHead(d);
+            else if (place == _size)
+                  insertEnd(d);
+            else
+                  insert(getNode(place - 1), new node(d));
+      }
+
       //
       // ─── REMOVE
       // ─────────────────────────────────────────────────────────────────────
       //
 
     protected:
-      virtual void remove(node<data_type>* preNode) {
-            node<data_type>* removeThis = preNode->_next;
-            preNode->_next              = removeThis->_next;
-            removeThis->_next           = NULL;
+      virtual void remove(node* prev) {
+            if (isEmpty())
+                  return;
+
+            node* removeThis = prev->next;
+            prev->next       = prev->next->next;
+            removeThis->next = NULL;
             delete removeThis;
             _size--;
       }
 
     public:
-      virtual void removeHead() {
-            if (_size == 0)
-                  return;
-            else if (_size == 1) {
-                  delete _head;
-                  _head = NULL;
-            }
-            else {
-                  node<data_type>* removeThis = _head;
-                  _head                       = removeThis->_next;
-                  removeThis->_next           = NULL;
-                  delete removeThis;
-            }
-            _size--;
+      void removeHead() {
+            remove(_head);
+            if (_head->next == _tail)
+                  _tail->prev = _head;
       }
-      virtual void removeEnd() {
-            if (_size == 0)
-                  return;
-            else if (_size == 1) {
-                  removeHead();
-                  return;
-            }
-            node<data_type>* preNode = getNode(_size - 2);
-            remove(preNode);
-      }
-      virtual void removeAfter(int place) {
-            if (place < 0 || place >= _size)
-                  return;
-            if (place == 0)
-                  return removeHead();
-            if (place == _size - 1)
-                  return removeEnd();
-            return remove(getNode(place));
+      void removeEnd() {
+            node* end = _head;
+            while ((end->next != _tail->prev) && (end->next != _tail))
+                  end = end->next;
+            remove(end);
+            _tail->prev = end;
       }
 
+      void removeAt(size_t place) {
+            if (place == 0)
+                  removeHead();
+            else if (place == _size - 1)
+                  removeEnd();
+            else
+                  remove(getNode(place - 1));
+      }
 
       //
       // ─── SWAP
       // ────────────────────────────────────────────────────────────────────
       //
-
-    protected:
-      void swap(node<data_type>* in1, node<data_type>* in2) {
-            data_type temp = in1->_data;
-            in1->_data     = in2->_data;
-            in2->_data     = temp;
-      }
-
-    public:
-      void swap(int in1, int in2) {
-            if (in1 < 0 || in1 >= _size)
-                  return;
-            if (in2 < 0 || in2 >= _size)
-                  return;
-            swap(getNode(in1), getNode(in2));
-      }
 
 
       //
@@ -277,46 +261,11 @@ class LinkedList {
       // ────────────────────────────────────────────────────────────────────
       //
 
-    protected:
-      void replace(node<data_type>* preNode, node<data_type>* newNode) {
-            node<data_type>* replaceThis = preNode->_next;
-            preNode->_next               = newNode;
-            newNode->_next               = replaceThis->_next;
-            replaceThis->_next           = NULL;
-            delete replaceThis;
-      }
-
-    public:
-      virtual void replace(int place, node<data_type>* newNode) {
-            if (place < 0 || place >= _size)
-                  return;
-            if (place == 0) {
-                  removeHead();
-                  insertHead(newNode);
-            }
-            replace(getNode(place - 1), newNode);
-      }
 
       //
       // ─── SUPPORT FUNCTION
       // ───────────────────────────────────────────────────────────
       //
-
-    public:
-      void sort() {
-            if (_size <= 1)
-                  return;
-            // selection sort
-            for (int i = 0; i < _size - 1; i++) {
-                  int minPlace = i;
-                  for (int j = i + 1; j < _size; j++) {
-                        if ((*this)[j] < (*this)[minPlace])
-                              minPlace = j;
-                  }
-                  if (minPlace != i)
-                        swap(i, minPlace);
-            }
-      }
 };
-}    // namespace week2
+}    // namespace data
 #endif

@@ -11,6 +11,7 @@ class Coordinate {
       double _z;
 
     public:
+      Coordinate() : _x(0), _y(0), _z(0) {}
       Coordinate(double x, double y) : _x(x), _y(y), _z(0) {}
       Coordinate(double x, double y, double z) : _x(x), _y(y), _z(z) {}
       Coordinate(const Coordinate& c) : _x(c._x), _y(c._y), _z(c._z) {}

@@ -6,36 +6,37 @@
 
 namespace data
 {
-template <class T>
-class Polynomial : public data::LinkedList<T> {
+template <class data_type>
+class Polynomial : public data::LinkedList<data_type> {
     public:
-      Polynomial() : data::LinkedList<T>() {}
+      Polynomial() : data::LinkedList<data_type>() {}
 
       template <int size>
-      Polynomial(T (&List)[size]) : data::LinkedList<T>(List) {}
+      Polynomial(data_type (&List)[size]) : data::LinkedList<data_type>(List) {}
+      Polynomial(data_type* List, int size)
+          : data::LinkedList<data_type>(List, size) {}
 
-      Polynomial(T* List, int size) : data::LinkedList<T>(List, size) {}
       ~Polynomial() {}
 
-      friend std::ostream& operator<<(std::ostream& o, const Polynomial<T>& p) {
+      friend std::ostream&
+         operator<<(std::ostream& o, const Polynomial<data_type>& p) {
             int size = p.size();
             if (size == 0) {
                   o << "0";
                   return o;
             }
 
-            o << p.tail()->_data;
+            o << p.end()->data;
             if (size == 1)
                   return o;
             o << "x";
             if (size >= 2)
                   o << "^" << --size;
 
-            data::node<T>* runNode = NULL;
             while (size > 0) {
-                  runNode    = p.getNode(--size);    // size is now power
-                  int& power = size;
-                  T&   data  = runNode->_data;
+                  auto runNode    = p.getNode(--size);    // size is now power
+                  int& power      = size;
+                  data_type& data = runNode->data;
 
                   if (data == 0)
                         continue;
@@ -65,32 +66,34 @@ class Polynomial : public data::LinkedList<T> {
             return o;
       }
 
-      Polynomial<T>& operator+=(const Polynomial<T>& p) {
-            Polynomial<T>* out = new Polynomial<T>();
+      Polynomial<data_type>& operator+=(const Polynomial<data_type>& p) {
+            Polynomial<data_type>* out = new Polynomial<data_type>();
             int max = this->size() > p.size() ? this->size() : p.size();
 
             while (out->size() < max)
                   out->insertEnd((*this)[out->size()] + p[out->size()]);
             return *out;
       }
-      const Polynomial<T> operator+(const Polynomial<T>& p) const {
+      const Polynomial<data_type>
+         operator+(const Polynomial<data_type>& p) const {
             return Polynomial(*this) += p;
       }
 
-      Polynomial<T>& operator-=(const Polynomial<T>& p) {
-            Polynomial<T>* out = new Polynomial<T>();
+      Polynomial<data_type>& operator-=(const Polynomial<data_type>& p) {
+            Polynomial<data_type>* out = new Polynomial<data_type>();
             int max = this->size() > p.size() ? this->size() : p.size();
 
             while (out->size() < max)
                   out->insertEnd((*this)[out->size()] - p[out->size()]);
             return *out;
       }
-      const Polynomial<T> operator-(const Polynomial<T>& p) const {
+      const Polynomial<data_type>
+         operator-(const Polynomial<data_type>& p) const {
             return Polynomial(*this) -= p;
       }
 
-      Polynomial<T>& operator*=(const Polynomial<T>& p) {
-            Polynomial<T>* out = new Polynomial<T>();
+      Polynomial<data_type>& operator*=(const Polynomial<data_type>& p) {
+            Polynomial<data_type>* out = new Polynomial<data_type>();
             for (int i = 0; i < p.size() + this->size() - 1; i++)
                   out->insertEnd(0);
 
@@ -99,7 +102,8 @@ class Polynomial : public data::LinkedList<T> {
                         (*out)[i + j] += p[i] * (*this)[j];
             return *out;
       }
-      const Polynomial<T> operator*(const Polynomial<T>& p) const {
+      const Polynomial<data_type>
+         operator*(const Polynomial<data_type>& p) const {
             return Polynomial(*this) *= p;
       }
 };

@@ -10,9 +10,9 @@
 
 // to be include here
 // #include <others.h>
+#include <bookTest.h>
 #include <tut1lab.h>
 #include <tut2lab.h>
-#include <bookTest.h>
 
 using namespace std;
 
@@ -37,9 +37,10 @@ int main(int argc, char** argv) {
 #endif    // DEBUG
       // week1::lab::labTest();
       // week1::tut::tutTest();
-      // week2::lab::labTest();
+      week2::lab::labTest();
       // week2::tut::tutTest();
-      book::LinkedListTest();
+      // book::LinkedListTest();
+      // data_fix::LinkedListTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
