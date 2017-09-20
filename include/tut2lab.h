@@ -33,7 +33,7 @@ namespace lab
                         return;
 
                   // std::cout << *this << std::endl;
-                  findWay(data::Coordinate(0, 0));
+                  findWay(zero);
             }
 
             // recursive find way

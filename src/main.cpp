@@ -39,8 +39,6 @@ int main(int argc, char** argv) {
       // week1::tut::tutTest();
       week2::lab::labTest();
       // week2::tut::tutTest();
-      // book::LinkedListTest();
-      // data_fix::LinkedListTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

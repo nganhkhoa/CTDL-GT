@@ -12,8 +12,8 @@ namespace lab
             int                    List[5] = {5, 8, 3, 2, 9};
             data::LinkedList<int>* intList = new data::LinkedList<int>(List);
             std::cout << *intList << std::endl;
-            // intList->printReverse();
-            // intList->sort();
+            intList->printReverse();
+            intList->sort();
             std::cout << *intList << std::endl;
 
             // copy cons test

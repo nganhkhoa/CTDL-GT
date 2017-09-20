@@ -101,7 +101,7 @@ class LinkedList {
             return temp->data;
       }
 
-      data_type& operator[](size_t place) const {
+      const data_type& operator[](size_t place) const {
             auto temp = begin();
             while (place-- > 0)
                   temp = temp->next;
@@ -123,6 +123,15 @@ class LinkedList {
             return o;
       }
 
+      void printReverse() {
+            if (size() == 0)
+                  return;
+            std::cout << "NULL <-- ";
+            for (int i = size() - 1; i > 0; i--)
+                  std::cout << getNode(i)->data << " <-- ";
+            std::cout << begin()->data << std::endl;
+      }
+
       //
       // ─── INIT FUNCTION
       // ──────────────────────────────────────────────────────────────
@@ -142,8 +151,8 @@ class LinkedList {
       template <int size>
       LinkedList(data_type (&List)[size]) {
             init();
-            while (_size != size)
-                  insertHead(List[_size]);
+            while (this->size() != size)
+                  insertHead(List[this->size()]);
       }
 
       LinkedList(const data_type& d) {
@@ -153,14 +162,14 @@ class LinkedList {
 
       LinkedList(const LinkedList<data_type>& l) {
             init();
-            while (_size < l.size())
-                  insertEnd(l[_size]);
+            while (this->size() < l.size())
+                  insertEnd(l[this->size()]);
       }
 
       LinkedList<data_type>& operator=(const LinkedList<data_type>& l) {
             clear();
-            while (_size < l.size())
-                  insertEnd(l[_size]);
+            while (this->size() < l.size())
+                  insertEnd(l[this->size()]);
             return *this;
       }
 
@@ -181,6 +190,11 @@ class LinkedList {
       virtual void insert(node* prev, node* newNode) {
             newNode->next = prev->next;
             prev->next    = newNode;
+
+            // set tail->prev to newNode
+            if (newNode->next == _tail)
+                  _tail->prev = newNode;
+
             _size++;
       }
 
@@ -194,11 +208,9 @@ class LinkedList {
 
       void insertEnd(const data_type& d) {
             // [n] <-> [_tail] -> NULL
-            insert(_tail->prev, new node(d));
             // [n] -> new -> [_tail] -> NULL
-            //  ^~~~~~~~~~~~~~~<|
-            // but [_tail] -> prev is still [n]
-            _tail->prev = _tail->prev->next;
+            //         ^~~~~~~~<|
+            insert(_tail->prev, new node(d));
       }
 
       void insertAt(size_t place, const data_type& d) {
@@ -242,30 +254,39 @@ class LinkedList {
       }
 
       void removeAt(size_t place) {
-            if (place == 0)
-                  removeHead();
-            else if (place == _size - 1)
+            if (place == size() - 1)
                   removeEnd();
+            else if (place == 0)
+                  removeHead();
             else
                   remove(getNode(place - 1));
       }
 
       //
-      // ─── SWAP
-      // ────────────────────────────────────────────────────────────────────
-      //
-
-
-      //
-      // ─── REPLACE
-      // ────────────────────────────────────────────────────────────────────
-      //
-
-
-      //
       // ─── SUPPORT FUNCTION
       // ───────────────────────────────────────────────────────────
       //
+
+      void swap(node* lhs, node* rhs) {
+            data_type temp = lhs->data;
+            lhs->data      = rhs->data;
+            rhs->data      = temp;
+      }
+
+      void sort() {
+            if (size() <= 1)
+                  return;
+            // selection sort
+            for (int i = 0; i < size() - 1; i++) {
+                  int minPlace = i;
+                  for (int j = i + 1; j < size(); j++) {
+                        if ((*this)[j] < (*this)[minPlace])
+                              minPlace = j;
+                  }
+                  if (minPlace != i)
+                        swap(getNode(i), getNode(minPlace));
+            }
+      }
 };
 }    // namespace data
 #endif
