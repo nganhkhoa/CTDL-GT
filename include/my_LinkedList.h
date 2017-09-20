@@ -73,11 +73,11 @@ class LinkedList {
       }
 
       node* end() const {
-            return _tail->prev;
+            return _tail;
       }
 
       node* end() {
-            return _tail->prev;
+            return _tail;
       }
 
       node* getNode(size_t place) {
@@ -95,17 +95,11 @@ class LinkedList {
       }
 
       data_type& operator[](size_t place) {
-            auto temp = begin();
-            while (place-- > 0)
-                  temp = temp->next;
-            return temp->data;
+            return getNode(place)->data;
       }
 
       const data_type& operator[](size_t place) const {
-            auto temp = begin();
-            while (place-- > 0)
-                  temp = temp->next;
-            return temp->data;
+            return getNode(place)->data;
       }
 
       friend std::ostream&
@@ -117,7 +111,6 @@ class LinkedList {
                         o << temp->data << " --> ";
                         temp = temp->next;
                   }
-                  o << temp->data << " --> ";
             }
             o << "NULL";
             return o;

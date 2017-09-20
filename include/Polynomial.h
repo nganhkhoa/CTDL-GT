@@ -26,7 +26,7 @@ class Polynomial : public data::LinkedList<data_type> {
                   return o;
             }
 
-            o << p.end()->data;
+            o << p.end()->prev->data;
             if (size == 1)
                   return o;
             o << "x";
