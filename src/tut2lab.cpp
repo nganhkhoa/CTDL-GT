@@ -334,4 +334,86 @@ namespace tut
       }
 
 }    // namespace tut
+namespace onclass
+{
+      void insertEnd(node* head, node* newNode) {
+            node* temp = head;
+            while (temp->next != NULL)
+                  temp = temp->next;
+            temp->next = newNode;
+      }
+      void insertEnd(node* head, int value) {
+            insertEnd(head, new node(value));
+      }
+
+      void deleteNode(node*& head, node* thisNode) {
+            if (head == thisNode) {
+                  head->next = NULL;
+                  head       = thisNode->next;
+                  return;
+            }
+
+            node* temp = head;
+            while (temp->next != thisNode && temp->next != NULL) {
+                  temp = temp->next;
+            }
+
+            if (temp->next == NULL) {
+                  std::cout << "Node cannot be found" << std::endl;
+                  return;
+            }
+
+            temp->next     = thisNode->next;
+            thisNode->next = NULL;
+            delete thisNode;
+      }
+
+      node* searchList(node* pHead, int place) {
+            node* temp = pHead;
+            if (temp == NULL)
+                  return NULL;
+
+            while (place-- > 0 && temp->next != NULL)
+                  temp = temp->next;
+
+            if (place == - 1)
+                  return temp;
+            return NULL;
+      }
+
+      void deleteNode2Times(node*& head, int place) {
+            node* deleteThis = searchList(head, place);
+            if (deleteThis == NULL)
+                  return;
+            if (deleteThis->next != NULL)
+                  deleteNode(head, deleteThis->next);
+            deleteNode(head, deleteThis);
+      }
+
+      void print(node* head) {
+            if (head == NULL)
+                  return;
+            std::cout << head->data << " ";
+            print(head->next);
+      }
+
+      void onclassTest() {
+            node* head = new node(13);
+            insertEnd(head, new node(5));
+            insertEnd(head, new node(2));
+            insertEnd(head, new node(3));
+            insertEnd(head, new node(32));
+            insertEnd(head, new node(24));
+            insertEnd(head, new node(7));    // 6
+
+            deleteNode2Times(head, 6);
+            // 13 5 2 3 32 24
+            print(head);
+            std::cout << std::endl;
+            deleteNode2Times(head, 4);
+            // 13 5 2 3
+            print(head);
+            std::cout << std::endl;
+      }
+}
 }    // namespace week2

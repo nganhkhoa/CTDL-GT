@@ -224,6 +224,24 @@ namespace tut
 
       void tutTest();
 }    // namespace tut
+namespace onclass
+{
+      struct node
+      {
+            int   data;
+            node* next = NULL;
+            node(int d) : data(d) {}
+      };
+
+      void  insertEnd(node*, node*);
+      void  insertEnd(node*, int);
+      void  deleteNode(node*&, node*);
+      node* searchList(node*, int);
+      void  deleteNode2Times(node*&, int);
+      void  print(node*);
+
+      void onclassTest();
+}
 }
 
 #endif
