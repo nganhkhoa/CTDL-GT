@@ -187,12 +187,44 @@ class LinkedList {
       void insertEnd(const data_type& d) {
             insert(end(), d);
       }
+      void insertAt(size_t place, const data_type& d) {
+            if (place <= 0)
+                  insertHead(d);
+            else if (place >= size())
+                  insertEnd(d);
+            else {
+                  auto it = begin();
+                  while (place--)
+                        it++;
+                  insert(it, d);
+            }
+      }
 
       void removeHead() {
             erase(begin());
       }
       void removeEnd() {
             erase(--end());
+      }
+      void removeAt(size_t place, const data_type& d) {
+            if (place <= 0)
+                  removeHead(d);
+            else if (place >= size())
+                  removeEnd(d);
+            else {
+                  auto it = begin();
+                  while (place--)
+                        it++;
+                  erase(it);
+            }
+      }
+      void removeData(const data_type& d) {
+            auto it = begin();
+            while (*it != d && it != end())
+                  it++;
+            if (it == end())
+                  return;
+            erase(it);
       }
 
     public:
@@ -276,6 +308,12 @@ class LinkedList {
        * Use the list
        */
 
+      void random(size_t size) {
+            clear();
+            while (size--)
+                  insertEnd(rand() % 100 + 1);
+      }
+
       size_t size() const {
             return _size;
       }
@@ -313,6 +351,13 @@ class LinkedList {
                   o << *it << " --> ";
             o << " NULL";
             return o;
+      }
+
+      data_type sum() {
+            data_type sum = data_type();
+            for (auto& x : (*this))
+                  sum += x;
+            return sum;
       }
 };
 }    // namespace book

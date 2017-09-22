@@ -3,6 +3,7 @@
 
 #include <LinkedList.h>
 #include <iostream>
+#include <cmath>
 
 namespace data
 {
@@ -33,8 +34,8 @@ class Polynomial : public data::LinkedList<data_type> {
             if (size >= 2)
                   o << "^" << --size;
 
-            while (size > 0) {
-                  int&      power = --size;
+            while (--size > -1) {
+                  int&      power = size;
                   data_type data  = p[size];
 
                   if (data == 0)
@@ -47,7 +48,7 @@ class Polynomial : public data::LinkedList<data_type> {
 
                   if (abs(data) == 1) {
                         if (power == 0)
-                              continue;
+                              o << 1;
                         else if (power == 1)
                               o << "x";
                         else
@@ -65,6 +66,20 @@ class Polynomial : public data::LinkedList<data_type> {
             return o;
       }
 
+      /*!
+       * Evaluate with x
+       */
+      double eval(double x) {
+            double sum      = 0;
+            double exponent = 0;
+            for (auto& p : (*this))
+                  sum += p * pow(x, exponent);
+            return sum;
+      }
+
+      /*!
+       * Math on Polynomial
+       */
       Polynomial<data_type>& operator+=(const Polynomial<data_type>& p) {
             Polynomial<data_type>* out = new Polynomial<data_type>();
             int max = this->size() > p.size() ? this->size() : p.size();

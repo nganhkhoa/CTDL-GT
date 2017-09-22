@@ -11,6 +11,7 @@
 // to be include here
 #include <tut1lab.h>
 #include <tut2lab.h>
+#include <tut3lab.h>
 
 using namespace std;
 
@@ -35,9 +36,10 @@ int main(int argc, char** argv) {
 #endif    // DEBUG
       // week1::lab::labTest();
       // week1::tut::tutTest();
-      week2::lab::labTest();
-      week2::tut::tutTest();
-      week2::onclass::onclassTest();
+      // week2::lab::labTest();
+      // week2::tut::tutTest();
+      // week2::onclass::onclassTest();
+      week3::lab::labTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
