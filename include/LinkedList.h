@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace book
+namespace data
 {
 
 template <class data_type>
@@ -38,6 +38,9 @@ class LinkedList {
       }
 
     public:
+      /*!
+       * Iterator class const and non-const
+       */
       class const_iterator {
           protected:
             const LinkedList<data_type>* list;
@@ -76,6 +79,17 @@ class LinkedList {
                   ++(*this);
                   return old;
             }
+            // --node
+            const_iterator& operator--() {
+                  current = current->prev;
+                  return *this;
+            }
+            // node--
+            const_iterator& operator--(int) {
+                  const_iterator old = *this;
+                  --(*this);
+                  return old;
+            }
 
             bool operator==(const const_iterator& it) const {
                   return current == it.current;
@@ -112,10 +126,24 @@ class LinkedList {
                   ++(*this);
                   return old;
             }
+            // --node
+            iterator operator--() {
+                  this->current = this->current->prev;
+                  return (*this);
+            }
+            // node--
+            iterator operator--(int) {
+                  iterator old = *this;
+                  --(*this);
+                  return old;
+            }
       };
 
 
     public:
+      /*!
+       * Iterator for using for-ranged loop
+       */
       iterator begin() {
             iterator it(*this, _head);
             return ++it;
@@ -132,20 +160,10 @@ class LinkedList {
             return {*this, _tail};
       }
 
-      size_t size() const {
-            return _size;
-      }
-
-      bool isEmpty() const {
-            return _size == 0;
-      }
-
-      void clear() {
-            while (!isEmpty())
-                  pop_front();
-      }
-
     public:
+      /*!
+       * Quick get
+       */
       data_type& front() {
             return *begin();
       }
@@ -160,54 +178,64 @@ class LinkedList {
             return *--end();
       }
 
-      void push_front(const data_type& d) {
+      /*!
+       * Insert and remove
+       */
+      void insertHead(const data_type& d) {
             insert(begin(), d);
       }
-      void push_back(const data_type& d) {
+      void insertEnd(const data_type& d) {
             insert(end(), d);
       }
 
-      void pop_front() {
+      void removeHead() {
             erase(begin());
       }
-      void pop_back() {
+      void removeEnd() {
             erase(--end());
       }
 
-      friend std::ostream&
-         operator<<(std::ostream& o, const LinkedList<data_type>& l) {
-            for (auto it = l.begin(); it != l.end(); it++)
-                  o << *it << " --> ";
-            o << " NULL";
-            return o;
-      }
-
     public:
+      /*!
+       * Init and delete
+       */
+
+      // empty cons
       LinkedList() {
             init();
       }
-      LinkedList(const LinkedList& l) {
+
+      // one data cons
+      LinkedList(const data_type& d) {
             init();
-            for (auto& x : l)
-                  push_back(x);
+            insertEnd(d);
       }
 
+      // array cons
       template <size_t size>
       LinkedList(data_type (&arr)[size]) {
             init();
             for (size_t i = 0; i < size; i++)
-                  push_back(arr[i]);
+                  insertEnd(arr[i]);
       }
       LinkedList(data_type* arr, size_t size) {
             init();
             for (size_t i = 0; i < size; i++)
-                  push_back(arr[i]);
+                  insertEnd(arr[i]);
       }
 
+      // copy cons
+      LinkedList(const LinkedList& l) {
+            init();
+            for (auto& x : l)
+                  insertEnd(x);
+      }
+
+      // operator=
       LinkedList& operator=(const LinkedList& l) {
             clear();
             for (auto& x : l)
-                  push_back(x);
+                  insertEnd(x);
             return (*this);
       }
 
@@ -243,6 +271,24 @@ class LinkedList {
             return to;
       }
 
+
+      /*!
+       * Use the list
+       */
+
+      size_t size() const {
+            return _size;
+      }
+
+      bool isEmpty() const {
+            return _size == 0;
+      }
+
+      void clear() {
+            while (!isEmpty())
+                  removeHead();
+      }
+
       data_type& operator[](size_t index) {
             if (index < 0 || index >= _size)
                   throw "Index out of range";
@@ -250,6 +296,23 @@ class LinkedList {
             while (index-- > 0)
                   it++;
             return *it;
+      }
+
+      const data_type& operator[](size_t index) const {
+            if (index < 0 || index >= _size)
+                  throw "Index out of range";
+            auto it = begin();
+            while (index-- > 0)
+                  it++;
+            return *it;
+      }
+
+      friend std::ostream&
+         operator<<(std::ostream& o, const LinkedList<data_type>& l) {
+            for (auto it = l.begin(); it != l.end(); it++)
+                  o << *it << " --> ";
+            o << " NULL";
+            return o;
       }
 };
 }    // namespace book

@@ -1,7 +1,7 @@
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 
-#include <my_LinkedList.h>
+#include <LinkedList.h>
 #include <iostream>
 
 namespace data
@@ -26,7 +26,7 @@ class Polynomial : public data::LinkedList<data_type> {
                   return o;
             }
 
-            o << p.end()->prev->data;
+            o << p.back();
             if (size == 1)
                   return o;
             o << "x";
@@ -34,9 +34,8 @@ class Polynomial : public data::LinkedList<data_type> {
                   o << "^" << --size;
 
             while (size > 0) {
-                  auto runNode    = p.getNode(--size);    // size is now power
-                  int& power      = size;
-                  data_type& data = runNode->data;
+                  int&      power = --size;
+                  data_type data  = p[size];
 
                   if (data == 0)
                         continue;

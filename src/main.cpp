@@ -9,8 +9,6 @@
 #include <ctime>
 
 // to be include here
-// #include <others.h>
-#include <bookTest.h>
 #include <tut1lab.h>
 #include <tut2lab.h>
 

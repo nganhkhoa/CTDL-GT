@@ -5,7 +5,7 @@
 #include <ctime>
 #include <cmath>
 
-#include <my_LinkedList.h>
+#include <LinkedList.h>
 #include <Coordinate.h>
 #include <Matrix.h>
 

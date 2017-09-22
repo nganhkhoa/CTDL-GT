@@ -1,6 +1,6 @@
 #include <tut2lab.h>
 #include <Polynomial.h>
-#include <my_LinkedList.h>
+#include <LinkedList.h>
 
 #include <iostream>
 
@@ -9,21 +9,22 @@ namespace week2
 namespace lab
 {
       void LinkedListTest() {
-            int                    List[5] = {5, 8, 3, 2, 9};
+            int                    List[5]     = {5, 8, 3, 2, 9};
+            int                    ListNew[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
             data::LinkedList<int>* intList = new data::LinkedList<int>(List);
             std::cout << *intList << std::endl;
-            intList->printReverse();
-            intList->sort();
+            // intList->printReverse();
+            // intList->sort();
             std::cout << *intList << std::endl;
 
             // copy cons test
             data::LinkedList<int>* copyList =
-               new data::LinkedList<int>(*intList);
+               new data::LinkedList<int>(*intList);    // 5 8 3 2 9
 
             // operator= test
             data::LinkedList<int>* operatorList =
-               new data::LinkedList<int>(List);
-            operatorList = intList;
+               new data::LinkedList<int>(ListNew);    // 0 1 2 3 4 5 6 7 8 9
+            operatorList = intList;                   // 5 8 3 2 9
 
             std::cout << *copyList << std::endl;
             std::cout << *operatorList << std::endl;
@@ -376,7 +377,7 @@ namespace onclass
             while (place-- > 0 && temp->next != NULL)
                   temp = temp->next;
 
-            if (place == - 1)
+            if (place == -1)
                   return temp;
             return NULL;
       }

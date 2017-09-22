@@ -6,10 +6,8 @@ set (SOURCES
 
 # add new libs here
 add_library(tutlab "tut1lab.cpp" "tut2lab.cpp")
-#add_library(data)
-add_library(book "bookTest.cpp")
 # add libs names here
-set (allLibs "tutlab" "book")
+set (allLibs "tutlab")
 
 if (TEST)
 
