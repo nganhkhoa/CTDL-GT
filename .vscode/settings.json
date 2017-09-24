@@ -25,6 +25,7 @@
 		"ostream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
+		"string": "cpp",
 		"system_error": "cpp",
 		"type_traits": "cpp",
 		"typeinfo": "cpp"
@@ -43,7 +44,10 @@
 	"C_Cpp.errorSquiggles": "Disabled",
 
 	// todo highlight
-	"todohighlight.include": "{**/*.cpp, **/*.c}",
+	"todohighlight.include": [
+		"**/*.cpp",
+		"**/*.c"
+	],
 	"todohighlight.keywords": [
 		{
 			"text": "BUGME:",
@@ -68,7 +72,5 @@
 			"color": "purple",
 			"backgroundColor": "rgba(16,100,60,.2)"
 		}
-	],
-
-
+	]
 }
