@@ -6,30 +6,32 @@
     },
     "description": "Emit debug information without performing optimizations"
   },
-  "activeEnvironments": [],
+  "activeEnvironments": [
+    "MinGW - C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev0\\mingw32"
+  ],
   "codeModel": {
     "configurations": [
       {
         "name": "Debug",
         "projects": [
           {
-            "buildDirectory": "D:/Dropbox/collaborate/khoa/mick/build",
+            "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build",
             "name": "project",
-            "sourceDirectory": "D:/Dropbox/collaborate/khoa/mick",
+            "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt",
             "targets": [
               {
                 "artifacts": [
-                  "D:/Dropbox/collaborate/khoa/mick/bin/project.exe",
-                  "D:/Dropbox/collaborate/khoa/mick/build/src/libproject.dll.a",
-                  "D:/Dropbox/collaborate/khoa/mick/bin/project.pdb"
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.exe",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libproject.dll.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.pdb"
                 ],
-                "buildDirectory": "D:/Dropbox/collaborate/khoa/mick/build/src",
+                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
                 "fileGroups": [
                   {
                     "compileFlags": "-Wall -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
                     "includePath": [
                       {
-                        "path": "D:/Dropbox/collaborate/khoa/mick/include"
+                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
                       }
                     ],
                     "isGenerated": false,
@@ -42,18 +44,48 @@
                 ],
                 "fullName": "project.exe",
                 "linkLanguageFlags": "-Wall -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g",
-                "linkLibraries": "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+                "linkLibraries": "libtutlab.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
                 "linkerLanguage": "CXX",
                 "name": "project",
-                "sourceDirectory": "D:/Dropbox/collaborate/khoa/mick/src",
+                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
                 "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.pdb"
+                ],
+                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wall -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
+                    "includePath": [
+                      {
+                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "tut1lab.cpp",
+                      "tut2lab.cpp",
+                      "tut3lab.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "libtutlab.a",
+                "linkerLanguage": "CXX",
+                "name": "tutlab",
+                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
+                "type": "STATIC_LIBRARY"
               }
             ]
           }
         ]
       }
     ],
-    "cookie": "0.9847603856084519",
+    "cookie": "0.20613685997142417",
     "inReplyTo": "codemodel",
     "type": "reply"
   }

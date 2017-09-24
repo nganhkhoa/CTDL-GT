@@ -1,12 +1,15 @@
 {
     "configurations": [
         {
-            "name": "null",
-            "includePath": [],
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}/include"
+            ],
             "defines": [],
             "browse": {
                 "path": [
-                    "${workspaceRoot}"
+                    "${workspaceRoot}/include",
+                    "C:/Program Files (x86)/mingw-w64/i686-7.1.0-posix-dwarf-rt_v5-rev0/mingw32/lib/gcc/i686-w64-mingw32/7.1.0/include/c++"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
