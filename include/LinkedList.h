@@ -243,6 +243,12 @@ class LinkedList {
             insertEnd(d);
       }
 
+      LinkedList(size_t s, const data_type& d) {
+            init();
+            while (s--)
+                  insertEnd(d);
+      }
+
       // array cons
       template <size_t size>
       LinkedList(data_type (&arr)[size]) {
@@ -277,6 +283,9 @@ class LinkedList {
             delete _tail;
       }
 
+      /*!
+      * Core insert and erase
+      */
     public:
       iterator insert(iterator it, const data_type& d) {
             it.valid();
@@ -307,7 +316,7 @@ class LinkedList {
       /*!
        * Use the list
        */
-
+    public:
       void random(size_t size) {
             clear();
             while (size--)
@@ -358,6 +367,13 @@ class LinkedList {
             for (auto& x : (*this))
                   sum += x;
             return sum;
+      }
+
+      void Concatenate(const LinkedList<data_type>& l) {
+            if (&l == this)
+                  return;
+            for (auto& x : l)
+                  insertEnd(x);
       }
 };
 }    // namespace book
