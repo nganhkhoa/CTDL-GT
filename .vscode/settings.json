@@ -5,6 +5,9 @@
 	"editor.tabSize": 6,
 
 	"files.associations": {
+		"*.m": "matlab",
+		"*.mpl": "maple",
+		"*.csproj": "xml",
 		"*.tcc": "cpp",
 		"cctype": "cpp",
 		"clocale": "cpp",
@@ -28,7 +31,12 @@
 		"string": "cpp",
 		"system_error": "cpp",
 		"type_traits": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"array": "cpp",
+		"hash_map": "cpp",
+		"hash_set": "cpp",
+		"string_view": "cpp",
+		"utility": "cpp"
 	},
 	
 	"files.exclude": {

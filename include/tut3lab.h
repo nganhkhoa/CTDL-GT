@@ -64,7 +64,24 @@ namespace lab
       void labTest();
 }    // namespace lab
 namespace tut
-{}    // namespace tut
+{
+      struct node
+      {
+            int   data;
+            node* next;
+            node(int d = int(), node* n = NULL) : data(d), next(n) {}
+      };
+
+      template <int size>
+      void          printAddress(int (&)[size]);
+      void          printAddress(node*, int);
+
+      void countValue(node*, int);
+      void printCircle(node*);
+      void compareList();
+      void nodeTest();
+      void tutTest();
+}    // namespace tut
 namespace onclass
 {}    // namespace onclass
 }    // namespace data

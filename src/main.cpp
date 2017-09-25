@@ -34,12 +34,14 @@ int main(int argc, char** argv) {
 #ifndef NDEBUG
       console->info("Logging system initialized");
 #endif    // DEBUG
+
       // week1::lab::labTest();
       // week1::tut::tutTest();
       // week2::lab::labTest();
       // week2::tut::tutTest();
       // week2::onclass::onclassTest();
       week3::lab::labTest();
+      week3::tut::tutTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
