@@ -13,6 +13,8 @@
 #include <tut2lab.h>
 #include <tut3lab.h>
 
+#include <fun.h>
+
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -40,8 +42,9 @@ int main(int argc, char** argv) {
       // week2::lab::labTest();
       // week2::tut::tutTest();
       // week2::onclass::onclassTest();
-      week3::lab::labTest();
-      week3::tut::tutTest();
+      // week3::lab::labTest();
+      // week3::tut::tutTest();
+      fun::SinglyLinkedListTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
