@@ -57,7 +57,7 @@ set(PUBLIC "-static -static-libgcc -static-libstdc++")
 set(IDENTIFIER "-fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8")
 set(CPPVERSION "-std=c++11")
 
-set(CMAKE_CXX_FLAGS ${WARNING}\ ${IDENTIFIER}\ ${CPPVERSION})
+set(CMAKE_CXX_FLAGS ${WARNING}\ ${PUBLIC}\ ${IDENTIFIER}\ ${CPPVERSION})
 
 	if(TEST)
 		add_definitions(-DUNITTEST)
