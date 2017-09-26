@@ -41,12 +41,13 @@ class SinglyLinkedList {
       SinglyLinkedList() {
             init();
       }
-      SinglyLinkedList(const SinglyLinkedList& l) {
+      SinglyLinkedList<data_type>(const SinglyLinkedList<data_type>& l) {
             init();
             for (auto& x : l)
                   insertEnd(x);
       }
-      SinglyLinkedList& operator=(const SinglyLinkedList& l) {
+      SinglyLinkedList<data_type>&
+         operator=(const SinglyLinkedList<data_type>& l) {
             clear();
             for (auto& x : l)
                   insertEnd(x);

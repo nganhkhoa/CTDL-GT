@@ -21,36 +21,6 @@
             "targets": [
               {
                 "artifacts": [
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.pdb"
-                ],
-                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
-                    "includePath": [
-                      {
-                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "tut1lab.cpp",
-                      "tut2lab.cpp",
-                      "tut3lab.cpp"
-                    ]
-                  }
-                ],
-                "fullName": "libtutlab.a",
-                "linkerLanguage": "CXX",
-                "name": "tutlab",
-                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
-                "type": "STATIC_LIBRARY"
-              },
-              {
-                "artifacts": [
                   "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.exe",
                   "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libproject.dll.a",
                   "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.pdb"
@@ -79,13 +49,43 @@
                 "name": "project",
                 "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
                 "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.pdb"
+                ],
+                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
+                    "includePath": [
+                      {
+                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "tut1lab.cpp",
+                      "tut2lab.cpp",
+                      "tut3lab.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "libtutlab.a",
+                "linkerLanguage": "CXX",
+                "name": "tutlab",
+                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
+                "type": "STATIC_LIBRARY"
               }
             ]
           }
         ]
       }
     ],
-    "cookie": "0.9747800448698478",
+    "cookie": "0.3626707668118474",
     "inReplyTo": "codemodel",
     "type": "reply"
   }
