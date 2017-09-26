@@ -87,14 +87,6 @@ namespace tut
             }
             std::cout << "HEAD\n";
       }
-      void nodeTest() {
-            node* head = new node(0, new node(1, new node(2, new node(3))));
-            head->next->next->next->next = head;
-            printCircle(head);
-            node* head2 = new node(
-               9, new node(1, new node(12, new node(6, new node(12)))));
-            countValue(head2, 5);
-      }
 
       template <int size>
       void          printAddress(int (&arr)[size]) {
@@ -109,6 +101,37 @@ namespace tut
                   std::cout << temp << " ";
                   temp = temp->next;
             }
+      }
+
+      void countValue(node* head, int size) {
+            std::map<int, int> value;
+            node* temp = head;
+
+            while (temp != NULL && size--) {
+                  if (value.find(temp->data) == value.end()) {
+                        std::pair<int, int> data(temp->data, 1);
+                        value.insert(value.end(), data);
+                  }
+                  else {
+                        value[temp->data] += 1;
+                  }
+                  temp = temp->next;
+            }
+
+            std::cout << "Number of occurrences\n";
+            for (auto it = value.begin(); it != value.end(); ++it) {
+                  std::cout << (*it).first << ":\t " << (*it).second
+                            << std::endl;
+            }
+      }
+
+      void nodeTest() {
+            node* head = new node(0, new node(1, new node(2, new node(3))));
+            head->next->next->next->next = head;
+            printCircle(head);
+            node* head2 = new node(
+               9, new node(1, new node(12, new node(6, new node(12)))));
+            countValue(head2, 5);
       }
 
       void compareList() {
@@ -133,27 +156,20 @@ namespace tut
             printAddress(head, 10);
       }
 
-      void countValue(node* head, int size) {
-            std::map<int, int> value;
-            node* temp = head;
-
-            while (temp != NULL && size--) {
-                  if (value.find(temp->data) == value.end()) {
-                        std::pair<int, int> data(temp->data, 1);
-                        value.insert(value.end(), data);
-                  }
-                  else {
-                        value[temp->data] += 1;
-                  }
-                  temp = temp->next;
-            }
-
-            for (auto it = value.begin(); it != value.end(); ++it) {
-                  std::cout << (*it).first << ": " << (*it).second << std::endl;
-            }
-      }
-
       void tutTest() {
+            /**
+             *  Problem 1
+             * O(n)
+             * When don't know the capacity
+             * When know that data never biger then...
+             */
+
+            /**
+             *  Problem 5
+             * Array address is relative to the first
+             * LinkedList address is random
+             */
+
             nodeTest();
             compareList();
       }
