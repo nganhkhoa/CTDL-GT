@@ -2,6 +2,8 @@
 #define FUN_H
 
 #include <SinglyLinkedList.h>
+#include <Stack_LinkedList.h>
+#include <Queue_LinkedList.h>
 
 #include <iostream>
 
@@ -41,6 +43,31 @@ inline void SinglyLinkedListTest() {
       for (auto it = intList->begin(); it != intList->end(); ++it)
             std::cout << *it << " ";
       std::cout << "\n";
+}
+
+
+inline void Stack_LinkedListTest() {
+      data::Stack_LinkedList<int>* stack = new data::Stack_LinkedList<int>();
+      stack->push(0);
+      stack->push(1);
+      stack->push(2);
+
+      std::cout << *stack << std::endl;
+
+      stack->pop();
+      std::cout << *stack << std::endl;
+}
+
+inline void Queue_LinkedListTest() {
+      data::Queue_LinkedList<int>* queue = new data::Queue_LinkedList<int>();
+      queue->enqueue(0);
+      queue->enqueue(1);
+      queue->enqueue(2);
+
+      std::cout << *queue << std::endl;
+
+      queue->dequeue();
+      std::cout << *queue << std::endl;
 }
 }
 #endif

@@ -39,12 +39,17 @@ int main(int argc, char** argv) {
 
       // week1::lab::labTest();
       // week1::tut::tutTest();
+
       // week2::lab::labTest();
       // week2::tut::tutTest();
       // week2::onclass::onclassTest();
+
       // week3::lab::labTest();
       // week3::tut::tutTest();
-      fun::SinglyLinkedListTest();
+
+      // fun::SinglyLinkedListTest();
+      // fun::Stack_LinkedListTest();
+      // fun::Queue_LinkedListTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

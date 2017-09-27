@@ -197,10 +197,10 @@ class SinglyLinkedList {
             return *begin();
       }
       data_type& back() {
-            return *end();
+            return _tail->data;
       }
       const data_type& back() const {
-            return *end();
+            return _tail->data;
       }
       data_type& operator[](size_t place) {
             auto it = begin();
