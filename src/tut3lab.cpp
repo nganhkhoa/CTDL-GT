@@ -34,7 +34,7 @@ namespace lab
       node* ReverseNode(node* root, int& n) {
             if (root == NULL)
                   return NULL;
-            if (root->next == NULL || n == 0)
+            if (root->next == NULL || n == 1)
                   return root;
 
             int   newN       = n - 1;
@@ -119,9 +119,8 @@ namespace tut
             }
 
             std::cout << "Number of occurrences\n";
-            for (auto it = value.begin(); it != value.end(); ++it) {
-                  std::cout << (*it).first << ":\t " << (*it).second
-                            << std::endl;
+            for (auto& m : value) {
+                  std::cout << m.first << ":\t " << m.second << std::endl;
             }
       }
 
@@ -138,8 +137,6 @@ namespace tut
             OccurrenceNode* ans = NULL;
 
             auto find = [&ans](int d) -> OccurrenceNode* {
-                  if (ans == NULL)
-                        return NULL;
                   OccurrenceNode* temp = ans;
                   while (temp != NULL) {
                         if (temp->data == d)
