@@ -77,6 +77,7 @@ namespace tut
       void          printAddress(node*, int);
 
       void countValue(node*, int);
+      void countValue2(node*, int);
       void printCircle(node*);
       void compareList();
       void nodeTest();

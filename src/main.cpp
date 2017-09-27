@@ -44,8 +44,8 @@ int main(int argc, char** argv) {
       // week2::tut::tutTest();
       // week2::onclass::onclassTest();
 
-      // week3::lab::labTest();
-      // week3::tut::tutTest();
+      week3::lab::labTest();
+      week3::tut::tutTest();
 
       // fun::SinglyLinkedListTest();
       // fun::Stack_LinkedListTest();

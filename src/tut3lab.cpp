@@ -125,13 +125,65 @@ namespace tut
             }
       }
 
+      void countValue2(node* head, int size) {
+            struct OccurrenceNode
+            {
+                  int             data;
+                  int             occurrence;
+                  OccurrenceNode* next;
+
+                  OccurrenceNode(int d) : data(d), occurrence(1), next(NULL) {}
+            };
+
+            OccurrenceNode* ans = NULL;
+
+            auto find = [&ans](int d) -> OccurrenceNode* {
+                  if (ans == NULL)
+                        return NULL;
+                  OccurrenceNode* temp = ans;
+                  while (temp != NULL) {
+                        if (temp->data == d)
+                              return temp;
+                        temp = temp->next;
+                  }
+                  return NULL;
+            };
+
+            node* temp = head;
+            while (temp != NULL && size--) {
+                  OccurrenceNode* Found = find(temp->data);
+                  if (Found == NULL) {
+                        // insert head to ans
+                        OccurrenceNode* newNode =
+                           new OccurrenceNode(temp->data);
+                        newNode->next = ans;
+                        ans           = newNode;
+                  }
+                  else {
+                        // add in to Occurrence
+                        Found->occurrence++;
+                  }
+                  temp = temp->next;
+            }
+
+            OccurrenceNode* toPrint = ans;
+            while (toPrint != NULL) {
+                  std::cout << toPrint->data << ":\t" << toPrint->occurrence
+                            << "\n";
+                  toPrint = toPrint->next;
+            }
+      }
+
       void nodeTest() {
             node* head = new node(0, new node(1, new node(2, new node(3))));
             head->next->next->next->next = head;
             printCircle(head);
             node* head2 = new node(
                9, new node(1, new node(12, new node(6, new node(12)))));
+            std::cout << "Using map count\n";
             countValue(head2, 5);
+            std::cout << "Using Linked List count\n";
+            countValue2(head2, 5);
       }
 
       void compareList() {
