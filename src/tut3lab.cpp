@@ -101,6 +101,7 @@ namespace tut
                   std::cout << temp << " ";
                   temp = temp->next;
             }
+            std::cout << std::endl;
       }
 
       void countValue(node* head, int size) {

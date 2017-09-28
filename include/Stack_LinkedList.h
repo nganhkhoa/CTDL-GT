@@ -12,6 +12,7 @@ class Stack_LinkedList : protected SinglyLinkedList<data_type> {
 
     public:
       Stack_LinkedList<data_type>() : SinglyLinkedList<data_type>() {}
+      ~Stack_LinkedList<data_type>() {}
 
     public:
       void pop() {
@@ -20,6 +21,19 @@ class Stack_LinkedList : protected SinglyLinkedList<data_type> {
 
       void push(const data_type& d) {
             SinglyLinkedList<data_type>::insertHead(d);
+      }
+
+      void clear() {
+            while (size())
+                  pop();
+      }
+
+      size_t size() const {
+            return SinglyLinkedList<data_type>::size();
+      }
+
+      void isEmpty() const {
+            return size() == 0;
       }
 
       friend std::ostream&

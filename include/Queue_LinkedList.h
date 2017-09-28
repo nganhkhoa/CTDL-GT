@@ -11,12 +11,27 @@ template <class data_type>
 class Queue_LinkedList : protected SinglyLinkedList<data_type> {
     public:
       Queue_LinkedList<data_type>() : SinglyLinkedList<data_type>() {}
+      ~Queue_LinkedList<data_type>() {}
 
+    public:
       void enqueue(const data_type& d) {
             SinglyLinkedList<data_type>::insertEnd(d);
       }
       void dequeue() {
             SinglyLinkedList<data_type>::removeHead();
+      }
+
+      void clear() {
+            while (size())
+                  dequeue();
+      }
+
+      size_t size() const {
+            return SinglyLinkedList<data_type>::size();
+      }
+
+      void isEmpty() const {
+            return size() == 0;
       }
 
       friend std::ostream&
@@ -25,6 +40,14 @@ class Queue_LinkedList : protected SinglyLinkedList<data_type> {
                   o << x << " --> ";
             o << "NULL";
             return o;
+      }
+
+      data_type& front() {
+            return SinglyLinkedList<data_type>::front();
+      }
+
+      data_type& rear() {
+            return SinglyLinkedList<data_type>::back();
       }
 };
 }

@@ -48,8 +48,8 @@ int main(int argc, char** argv) {
       week3::tut::tutTest();
 
       // fun::SinglyLinkedListTest();
-      // fun::Stack_LinkedListTest();
-      // fun::Queue_LinkedListTest();
+      fun::Stack_LinkedListTest();
+      fun::Queue_LinkedListTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

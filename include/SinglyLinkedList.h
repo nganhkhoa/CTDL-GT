@@ -53,6 +53,14 @@ class SinglyLinkedList {
                   insertEnd(x);
       }
 
+      ~SinglyLinkedList<data_type>() {
+            clear();
+            // size is 0
+            // tail = head
+            // set head->next = NULL
+            _head->next = NULL;
+      }
+
     public:
       void clear() {
             while (size())

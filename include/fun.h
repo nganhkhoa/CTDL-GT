@@ -56,6 +56,7 @@ inline void Stack_LinkedListTest() {
 
       stack->pop();
       std::cout << *stack << std::endl;
+      delete stack;
 }
 
 inline void Queue_LinkedListTest() {
@@ -68,6 +69,7 @@ inline void Queue_LinkedListTest() {
 
       queue->dequeue();
       std::cout << *queue << std::endl;
+      delete queue;
 }
 }
 #endif
