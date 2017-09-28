@@ -27,7 +27,7 @@
 			},
 			"windows": {
 				"MIMode": "gdb",
-				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin\\gdb.exe",
+				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev2\\mingw32\\bin\\gdb.exe",
 				"setupCommands": [
 					{
 						"description": "Enable pretty-printing for gdb",
@@ -63,7 +63,7 @@
 			},
 			"windows": {
 				"MIMode": "gdb",
-				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin\\gdb.exe",
+				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev2\\mingw32\\bin\\gdb.exe",
 				"setupCommands": [
 					{
 						"description": "Enable pretty-printing for gdb",
@@ -98,7 +98,7 @@
 			},
 			"windows": {
 				"MIMode": "gdb",
-				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin\\gdb.exe",
+				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev2\\mingw32\\bin\\gdb.exe",
 				"setupCommands": [
 					{
 						"description": "Enable pretty-printing for gdb",
@@ -129,7 +129,7 @@
 			},
 			"windows": {
 				"MIMode": "gdb",
-				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin\\gdb.exe",
+				"miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.1.0-posix-dwarf-rt_v5-rev2\\mingw32\\bin\\gdb.exe",
 				"setupCommands": [
 					{
 						"description": "Enable pretty-printing for gdb",
