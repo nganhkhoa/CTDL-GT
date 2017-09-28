@@ -35,7 +35,7 @@ else (TEST)
 
 add_executable (${PROJECT_NAME} ${SOURCES})
 foreach (lib ${allLibs})
-    message(Linking\ ${lib})
+    # message(Linking\ ${lib})
     target_link_libraries(${PROJECT_NAME} ${lib})
 endforeach(lib)
 

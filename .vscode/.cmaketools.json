@@ -21,37 +21,6 @@
             "targets": [
               {
                 "artifacts": [
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.exe",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libproject.dll.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.pdb"
-                ],
-                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
-                    "includePath": [
-                      {
-                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "main.cpp",
-                      "debug.cpp"
-                    ]
-                  }
-                ],
-                "fullName": "project.exe",
-                "linkLanguageFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g",
-                "linkLibraries": "-l0 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-                "linkerLanguage": "CXX",
-                "name": "project",
-                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
                   "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
                   "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
                   "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.pdb"
@@ -83,9 +52,9 @@
               },
               {
                 "artifacts": [
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libdata.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libdata.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libdata.pdb"
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.exe",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libproject.dll.a",
+                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.pdb"
                 ],
                 "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
                 "fileGroups": [
@@ -99,23 +68,25 @@
                     "isGenerated": false,
                     "language": "CXX",
                     "sources": [
-                      "Queue_LinkedList.cpp",
-                      "Stack_LinkedList.cpp"
+                      "main.cpp",
+                      "debug.cpp"
                     ]
                   }
                 ],
-                "fullName": "libdata.a",
+                "fullName": "project.exe",
+                "linkLanguageFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g",
+                "linkLibraries": "libtutlab.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
                 "linkerLanguage": "CXX",
-                "name": "data",
+                "name": "project",
                 "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
-                "type": "STATIC_LIBRARY"
+                "type": "EXECUTABLE"
               }
             ]
           }
         ]
       }
     ],
-    "cookie": "0.014523488184249977",
+    "cookie": "0.12095812103965886",
     "inReplyTo": "codemodel",
     "type": "reply"
   }

@@ -50,29 +50,6 @@ class Queue_LinkedList : protected SinglyLinkedList<data_type> {
       data_type& rear() {
             return SinglyLinkedList<data_type>::back();
       }
-
-
-    public:
-      /**
-       * A request to reverse
-       * Time  O(n)
-       * Space O(1)
-       * n : size
-      */
-      void reverse() {
-            data::SinglyLinkedList<data_type>* list =
-               new data::SinglyLinkedList<data_type>();
-            while (!isEmpty()) {
-                  data_type data = front();
-                  list->insertHead(data);
-                  dequeue();
-            }
-            while (!list->isEmpty()) {
-                  data_type data = list->front();
-                  enqueue(data);
-                  list->removeHead();
-            }
-      }
 };
 }    // namespace data
 

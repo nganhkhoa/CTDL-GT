@@ -56,13 +56,6 @@ inline void Stack_LinkedListTest() {
       stack->push(2);
       stack->pop();
       std::cout << *stack << std::endl;
-      stack->clear();
-
-      stack->push(0);
-      stack->push(1);
-      stack->push(2);
-      stack->reverse();
-      std::cout << *stack << std::endl;
       delete stack;
 }
 
@@ -78,13 +71,6 @@ inline void Queue_LinkedListTest() {
       queue->enqueue(1);
       queue->enqueue(2);
       queue->dequeue();
-      std::cout << *queue << std::endl;
-      queue->clear();
-
-      queue->enqueue(0);
-      queue->enqueue(1);
-      queue->enqueue(2);
-      queue->reverse();
       std::cout << *queue << std::endl;
       delete queue;
 }
