@@ -1,10 +1,11 @@
 #include <tut4lab.h>
 
-#include <SinglyLinkedList.h>
+#include <LinkedList.h>
 #include <Queue_LinkedList.h>
 #include <Stack_LinkedList.h>
 
 #include <iostream>
+#include <string>
 
 namespace week4
 {
@@ -136,8 +137,92 @@ namespace lab
             std::cout << "Linked List reverse using Queue test\n";
             LinkedList_Queue_ReverseTest();
       }
+
+      std::string Decimal2Binary(int num) {
+            data::Stack_LinkedList<int>* stack =
+               new data::Stack_LinkedList<int>();
+            std::string result = "";
+
+            while (num) {
+                  stack->push(num % 2);
+                  num /= 2;
+            }
+
+            while (stack->size()) {
+                  result += ((stack->top() == 0) ? '0' : '1');
+                  stack->pop();
+            }
+            return result;
+      }
+
+      template <typename data_type>
+      data::Queue_LinkedList<data_type>&
+         Stack2Queue(data::Stack_LinkedList<data_type>& s) {
+            data::Queue_LinkedList<data_type>* queue =
+               new data::Queue_LinkedList<data_type>();
+
+            while (s.size()) {
+                  queue->enqueue(s.top());
+                  s.pop();
+            }
+
+            return *queue;
+      }
+      template <typename data_type>
+      data::Stack_LinkedList<data_type>&
+         Queue2Stack(data::Queue_LinkedList<data_type>& q) {
+            data::Stack_LinkedList<data_type>* stack =
+               new data::Stack_LinkedList<data_type>();
+
+            data::Queue_LinkedList<data_type>* queue =
+               new data::Queue_LinkedList<int>(q);
+            while (queue->size()) {
+                  stack->push(queue->front());
+                  queue->dequeue();
+            }
+            delete queue;
+            reverse(*stack);
+            return *stack;
+      }
+
       void labTest() {
             reverseTest();
+            std::cout << Decimal2Binary(10) << std::endl;
+
+            data::Queue_LinkedList<int>* queue =
+               new data::Queue_LinkedList<int>();
+            queue->enqueue(0);
+            queue->enqueue(1);
+            queue->enqueue(2);
+            queue->enqueue(3);
+            queue->enqueue(4);
+            queue->enqueue(5);
+
+            data::Stack_LinkedList<int>* StackFromQueue =
+               new data::Stack_LinkedList<int>(Queue2Stack(*queue));
+
+            std::cout << "Queue: " << *queue << std::endl;
+            std::cout << "Stack: " << *StackFromQueue << std::endl;
+            delete StackFromQueue;
+            delete queue;
+
+
+            data::Stack_LinkedList<int>* stack =
+               new data::Stack_LinkedList<int>();
+            stack->push(0);
+            stack->push(1);
+            stack->push(2);
+            stack->push(3);
+            stack->push(4);
+            stack->push(5);
+
+            data::Queue_LinkedList<int>* QueueFromStack =
+               new data::Queue_LinkedList<int>(Stack2Queue(*stack));
+
+            std::cout << "Stack: " << *stack << std::endl;
+            std::cout << "Queue: " << *QueueFromStack << std::endl;
+            delete stack;
+            delete QueueFromStack;
       }
 }    // namespace lab
 namespace tut

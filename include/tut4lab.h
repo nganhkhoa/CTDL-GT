@@ -5,6 +5,8 @@
 #include <Queue_LinkedList.h>
 #include <Stack_LinkedList.h>
 
+#include <string>
+
 namespace week4
 {
 namespace lab
@@ -23,6 +25,16 @@ namespace lab
       void LinkedList_Stack_ReverseTest();
       void LinkedList_Queue_ReverseTest();
       void reverseTest();
+
+      std::string Decimal2Binary(int num);
+
+      template <typename data_type>
+      data::Queue_LinkedList<data_type>&
+         Stack2Queue(data::Stack_LinkedList<data_type>& s);
+      template <typename data_type>
+      data::Stack_LinkedList<data_type>&
+         Queue2Stack(data::Queue_LinkedList<data_type>& s);
+
       void labTest();
 }    // namespace lab
 namespace tut
