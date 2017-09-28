@@ -4,9 +4,9 @@
 namespace week4
 {
 namespace lab
-{}    // namespace lab
+{ void labTest(); }    // namespace lab
 namespace tut
-{}    // namespace tut
+{ void tutTest(); }    // namespace tut
 namespace onclass
 {}    // namespace onclass
 }

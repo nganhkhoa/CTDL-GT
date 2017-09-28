@@ -8,7 +8,8 @@ set (SOURCES
 add_library(tutlab 
     "tut1lab.cpp" 
     "tut2lab.cpp"
-    "tut3lab.cpp")
+    "tut3lab.cpp"
+    "tut4lab.cpp")
 # add libs names here
 set (allLibs "tutlab")
 
