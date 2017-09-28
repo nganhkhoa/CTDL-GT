@@ -6,10 +6,8 @@
 #include <Queue_LinkedList.h>
 
 #include <iostream>
-
 namespace fun
 {
-
 inline void SinglyLinkedListTest() {
       data::SinglyLinkedList<int>* intList = new data::SinglyLinkedList<int>();
       std::cout << *intList << std::endl;
@@ -45,16 +43,25 @@ inline void SinglyLinkedListTest() {
       std::cout << "\n";
 }
 
-
 inline void Stack_LinkedListTest() {
       data::Stack_LinkedList<int>* stack = new data::Stack_LinkedList<int>();
       stack->push(0);
       stack->push(1);
       stack->push(2);
-
       std::cout << *stack << std::endl;
+      stack->clear();
 
+      stack->push(0);
+      stack->push(1);
+      stack->push(2);
       stack->pop();
+      std::cout << *stack << std::endl;
+      stack->clear();
+
+      stack->push(0);
+      stack->push(1);
+      stack->push(2);
+      stack->reverse();
       std::cout << *stack << std::endl;
       delete stack;
 }
@@ -64,10 +71,20 @@ inline void Queue_LinkedListTest() {
       queue->enqueue(0);
       queue->enqueue(1);
       queue->enqueue(2);
-
       std::cout << *queue << std::endl;
+      queue->clear();
 
+      queue->enqueue(0);
+      queue->enqueue(1);
+      queue->enqueue(2);
       queue->dequeue();
+      std::cout << *queue << std::endl;
+      queue->clear();
+
+      queue->enqueue(0);
+      queue->enqueue(1);
+      queue->enqueue(2);
+      queue->reverse();
       std::cout << *queue << std::endl;
       delete queue;
 }

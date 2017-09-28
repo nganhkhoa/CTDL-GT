@@ -32,22 +32,46 @@ class Stack_LinkedList : protected SinglyLinkedList<data_type> {
             return SinglyLinkedList<data_type>::size();
       }
 
-      void isEmpty() const {
+      bool isEmpty() const {
             return size() == 0;
       }
 
       friend std::ostream&
          operator<<(std::ostream& o, const Stack_LinkedList<data_type>& s) {
+            o << "TOP <-- ";
             for (auto& x : s)
-                  o << x << " --> ";
-            o << "NULL";
+                  o << x << " <-- ";
+            o << "END STACK";
             return o;
       }
 
       data_type& top() {
             return SinglyLinkedList<data_type>::front();
       }
+
+
+    public:
+      /**
+       * A request to reverse
+       * Time  O(n)
+       * Space O(1)
+       * n : size
+      */
+      void reverse() {
+            data::SinglyLinkedList<data_type>* list =
+               new data::SinglyLinkedList<data_type>();
+            while (!isEmpty()) {
+                  data_type data = top();
+                  list->insertEnd(data);
+                  pop();
+            }
+            while (!list->isEmpty()) {
+                  data_type data = list->front();
+                  push(data);
+                  list->removeHead();
+            }
+      }
 };
-}
+}    // namespace data
 
 #endif

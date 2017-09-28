@@ -1,12 +1,12 @@
 
-set (SOURCES 
+set (SOURCES
       "main.cpp"
       "debug.cpp"
 )
 
 # add new libs here
-add_library(tutlab 
-    "tut1lab.cpp" 
+add_library(tutlab
+    "tut1lab.cpp"
     "tut2lab.cpp"
     "tut3lab.cpp"
     "tut4lab.cpp")
@@ -34,7 +34,10 @@ endif()
 else (TEST)
 
 add_executable (${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${allLibs})
+foreach (lib ${allLibs})
+    message(Linking\ ${lib})
+    target_link_libraries(${PROJECT_NAME} ${lib})
+endforeach(lib)
 
 if(USEBOOST)
     file(GLOB_RECURSE boostLib "${BOOST_LIBRARYDIR}/*.a")
