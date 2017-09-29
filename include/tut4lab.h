@@ -38,7 +38,54 @@ namespace lab
       void labTest();
 }    // namespace lab
 namespace tut
-{ void tutTest(); }    // namespace tut
+{
+      struct node
+      {
+            int   data;
+            node* next;
+            node(int d = int(), node* n = NULL) : data(d), next(n) {}
+      };
+      struct stack
+      {
+            node* top;
+            int   count;
+
+            stack(int d) : count(1) {
+                  top = new node(d);
+            }
+
+            stack() : top(NULL), count(0) {}
+      };
+      struct queue
+      {
+            node* front;
+            node* rear;
+            int   count;
+            queue(int d) : count(1) {
+                  front = new node(d);
+                  rear  = front;
+            }
+
+            queue() : front(NULL), rear(NULL), count(0) {}
+      };
+
+      void PushStack(stack* s, int n);
+      void PopStack(stack* s, int& n);
+      bool IsStackEmpty(stack* s);
+      stack* copyStack(stack* s);
+      void removeN(stack* s, int n);
+      void stackTest();
+
+      void EnQueue(queue* q, int n);
+      void Dequeue(queue* q, int& x);
+      bool IsQueueEmpty(queue* q);
+      int GetFront(queue* q);
+      int GetRear(queue* q);
+      void removeElement(queue* q);
+      void queueTest();
+
+      void tutTest();
+}    // namespace tut
 namespace onclass
 {}    // namespace onclass
 }

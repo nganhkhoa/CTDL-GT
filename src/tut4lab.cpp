@@ -227,7 +227,100 @@ namespace lab
 }    // namespace lab
 namespace tut
 {
-      void tutTest() {}
+      void PushStack(stack* s, int n) {
+            if (IsStackEmpty(s))
+                  s->top = new node(n);
+            else
+                  s->top = new node(n, s->top);
+            ++s->count;
+      }
+      void PopStack(stack* s, int& n) {
+            if (IsStackEmpty(s))
+                  return;
+            node* temp = s->top;
+            n          = temp->data;
+
+            s->top     = s->top->next;
+            temp->next = NULL;
+            delete temp;
+            temp = NULL;
+            --s->count;
+      }
+      bool IsStackEmpty(stack* s) {
+            return s->count == 0;
+      }
+      stack* copyStack(stack* s) {
+            if (s == NULL)
+                  return NULL;
+
+            stack* returnStack = new stack();
+            node*  temp        = s->top;
+
+            while (s->count != returnStack->count) {
+                  PushStack(returnStack, temp->data);
+                  temp = temp->next;
+            }
+
+            return returnStack;
+      }
+      void removeN(stack* s, int n) {}
+      void stackTest() {
+            // 161 1617
+            int a1 = 1;
+            int a2 = 6;
+            int a3 = 1;
+            int a4 = 7;
+
+            stack* stack1 = new stack();
+            stack* stack2 = new stack();
+            int    x      = 0;
+
+            PushStack(stack1, a1);
+            PushStack(stack1, a2);
+            PushStack(stack1, a3);
+            PushStack(stack1, a4);
+
+            while (!IsStackEmpty(stack1)) {
+                  PopStack(stack1, x);
+                  PushStack(stack2, x);
+            }
+
+            PushStack(stack1, a1 * a3);
+            PushStack(stack1, a2 * a4);
+
+            while (!IsStackEmpty(stack2)) {
+                  PopStack(stack2, x);
+                  PushStack(stack1, x);
+            }
+
+            PopStack(stack1, x);
+            PushStack(stack2, x);
+            PopStack(stack1, x);
+            PushStack(stack2, x);
+
+            stack* stack3 = copyStack(stack1);
+      }
+
+      void EnQueue(queue* q, int n) {}
+      void Dequeue(queue* q, int& x) {}
+      bool IsQueueEmpty(queue* q) {
+            return q->count == 0;
+      }
+      int GetFront(queue* q) {
+            if (!IsQueueEmpty(q))
+                  return q->front->data;
+      }
+      int GetRear(queue* q) {
+            if (!IsQueueEmpty(q))
+                  return q->rear->data;
+      }
+      void removeElement(queue* q) {}
+      void                      queueTest() {}
+
+      void tutTest() {
+            stackTest();
+            queueTest();
+      }
 }    // namespace tut
 namespace onclass
 {}    // namespace onclass
