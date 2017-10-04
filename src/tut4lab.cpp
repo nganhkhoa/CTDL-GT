@@ -240,7 +240,7 @@ namespace tut
       void PopStack(stack* s, int& n) {
             if (IsStackEmpty(s))
                   return;
-            x          = top(s);
+            n          = top(s);
             node* temp = s->top;
             s->top     = s->top->next;
             temp->next = NULL;
