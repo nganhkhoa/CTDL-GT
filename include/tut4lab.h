@@ -77,7 +77,7 @@ namespace tut
       void stackTest();
 
       void EnQueue(queue* q, int n);
-      void Dequeue(queue* q, int& x);
+      void DeQueue(queue* q, int& x);
       bool IsQueueEmpty(queue* q);
       int GetFront(queue* q);
       int GetRear(queue* q);

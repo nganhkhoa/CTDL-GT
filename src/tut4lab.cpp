@@ -234,12 +234,14 @@ namespace tut
                   s->top = new node(n, s->top);
             ++s->count;
       }
+      int& top(stack* s) {
+            return s->top->data;
+      }
       void PopStack(stack* s, int& n) {
             if (IsStackEmpty(s))
                   return;
+            x          = top(s);
             node* temp = s->top;
-            n          = temp->data;
-
             s->top     = s->top->next;
             temp->next = NULL;
             delete temp;
@@ -264,6 +266,15 @@ namespace tut
             return returnStack;
       }
       void removeN(stack* s, int n) {}
+      void print(stack* s) {
+            node* temp = s->top;
+            std::cout << "TOP <-- ";
+            while (temp != NULL) {
+                  std::cout << temp->data << "<-- ";
+                  temp = temp->next;
+            }
+            std::cout << std::endl;
+      }
       void stackTest() {
             // 161 1617
             int a1 = 1;
@@ -301,21 +312,57 @@ namespace tut
             stack* stack3 = copyStack(stack1);
       }
 
-      void EnQueue(queue* q, int n) {}
-      void Dequeue(queue* q, int& x) {}
+      void EnQueue(queue* q, int n) {
+            if (IsQueueEmpty(q))
+                  q->rear = q->front = new node(n);
+            else
+                  q->rear = q->rear->next = new node(n);
+            ++q->count;
+      }
+      void DeQueue(queue* q, int& x) {
+            if (!IsQueueEmpty(q)) {
+                  x        = GetFront(q);
+                  q->front = q->front->next;
+                  --q->count;
+            }
+      }
       bool IsQueueEmpty(queue* q) {
             return q->count == 0;
       }
       int GetFront(queue* q) {
-            if (!IsQueueEmpty(q))
-                  return q->front->data;
+            return q->front->data;
       }
       int GetRear(queue* q) {
-            if (!IsQueueEmpty(q))
-                  return q->rear->data;
+            return q->rear->data;
       }
       void removeElement(queue* q) {}
-      void                      queueTest() {}
+
+      void queueTest() {
+            queue* queue1 = new queue();
+            queue* queue2 = new queue();
+            stack* stack1 = new stack();
+
+            int stuID[7] = {1, 6, 1, 1, 6, 1, 7};
+            for (int i = 0; i < 7; ++i)
+                  EnQueue(queue1, stuID[i]);
+
+            while (!IsQueueEmpty(queue1)) {
+                  int x;
+                  DeQueue(queue1, x);
+                  if (x % 3 == 2) {
+                        int z = 1;
+                        int y;
+                        while (!IsStackEmpty(stack1)) {
+                              PopStack(stack1, y);
+                              z *= y;
+                        }
+                        EnQueue(queue2, z);
+                  }
+                  else {
+                        PushStack(stack1, x);
+                  }
+            }
+      }
 
       void tutTest() {
             stackTest();

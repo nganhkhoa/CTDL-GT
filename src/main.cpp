@@ -49,12 +49,13 @@ int main(int argc, char** argv) {
       // week3::lab::labTest();
       // week3::tut::tutTest();
 
-      week4::lab::labTest();
-      week4::tut::tutTest();
+      // week4::lab::labTest();
+      // week4::tut::tutTest();
 
       // fun::SinglyLinkedListTest();
       // fun::Stack_LinkedListTest();
       // fun::Queue_LinkedListTest();
+      fun::BinaryTreeTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

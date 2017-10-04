@@ -4,6 +4,7 @@
 #include <SinglyLinkedList.h>
 #include <Stack_LinkedList.h>
 #include <Queue_LinkedList.h>
+#include <BinaryTree.h>
 
 #include <iostream>
 namespace fun
@@ -73,6 +74,14 @@ inline void Queue_LinkedListTest() {
       queue->dequeue();
       std::cout << *queue << std::endl;
       delete queue;
+}
+
+inline void BinaryTreeTest() {
+      data::BinaryTree<int>* myTree = new data::BinaryTree<int>();
+      myTree->insert(5);
+      myTree->insert(0);
+      myTree->insert(9);
+      std::cout << *myTree << std::endl;
 }
 }
 #endif
