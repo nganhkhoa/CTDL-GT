@@ -15,6 +15,8 @@
 #include <tut3lab.h>
 #include <tut4lab.h>
 
+#include <test1.h>
+
 #include <fun.h>
 
 using namespace std;
@@ -52,10 +54,12 @@ int main(int argc, char** argv) {
       // week4::lab::labTest();
       // week4::tut::tutTest();
 
+      test1::test::Test();
+
       // fun::SinglyLinkedListTest();
       // fun::Stack_LinkedListTest();
       // fun::Queue_LinkedListTest();
-      fun::BinaryTreeTest();
+      // fun::BinaryTreeTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

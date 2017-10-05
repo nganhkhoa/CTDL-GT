@@ -6,6 +6,8 @@
 namespace test1
 {
 namespace prepare
+{}    // namespace prepare
+namespace test
 {
       struct LinkedList
       {
@@ -17,137 +19,68 @@ namespace prepare
                   node(int d = 0, node* n = NULL) : data(d), next(n) {}
             };
 
-            node* head;
-            int   count;
+            typedef int size_t;
+            node*       _head;
+            size_t      _size;
 
             LinkedList() {
-                  head  = NULL;
-                  count = 0;
+                  _head = new node();
+                  _size = 0;
             }
 
-            int size() const {
-                  return count;
+            size_t size() const {
+                  return _size;
             }
-            bool empty() const {
-                  return size() == 0;
-            }
-            bool full() const {
-                  node* n = new node();
-                  if (n) {
-                        delete n;
+
+            bool insertAt(size_t place = 1, int data = 0) {
+                  if (place > size() + 1)
                         return false;
-                  }
+                  if (place < 1)
+                        return false;
+
+                  node* preNode = _head;
+                  while (--place)
+                        preNode = preNode->next;
+                  preNode->next = new node(data, preNode->next);
+                  ++_size;
+                  preNode = NULL;
                   return true;
             }
 
-            void clear() const {
-                  while (!empty()) {
+            bool removeAt(size_t place = 0) {
+                  if (place > size())
+                        return false;
+                  if (place < 1)
+                        return false;
+
+                  node* preNode = _head;
+                  while (--place)
+                        preNode = preNode->next;
+
+                  node* removeThis = preNode->next;
+                  preNode->next    = removeThis->next;
+
+                  delete removeThis;
+                  removeThis = NULL;
+                  preNode    = NULL;
+                  return true;
+            }
+
+            friend std::ostream&
+               operator<<(std::ostream& o, const LinkedList& l) {
+                  auto temp = l._head->next;
+
+                  while (temp) {
+                        o << temp->data;
+                        o << " --> ";
+                        temp = temp->next;
                   }
-            }
-            void insert() {}
-            void remove() {}
-      };
-
-      struct stack
-      {
-            struct node
-            {
-                  int   data;
-                  node* next;
-
-                  node(int d = 0, node* n = NULL) : data(d), next(n) {}
-            };
-
-            node* top;
-            int   count;
-
-            stack() {
-                  top   = NULL;
-                  count = 0;
-            }
-
-            inline int size() const {
-                  return count;
-            }
-            inline bool empty() const {
-                  return size() == 0;
-            }
-
-            void push(int d) {
-                  if (empty())
-                        top = new node(d);
-                  else
-                        top = new node(d, top);
-                  ++count;
-            }
-            void pop() {
-                  if (empty())
-                        return;
-                  node* removeThis = top;
-                  top              = top->next;
-                  delete removeThis;
-                  removeThis = NULL;
-                  --count;
-            }
-            int& top() {
-                  return top->data;
+                  o << "END";
+                  return o;
             }
       };
-
-      struct queue
-      {
-            struct node
-            {
-                  int   data;
-                  node* next;
-
-                  node(int d = 0, node* n = NULL) : data(d), next(n) {}
-            };
-
-            node* front;
-            node* rear;
-            int   count;
-
-            queue() {
-                  front = NULL;
-                  rear  = NULL;
-                  count = 0;
-            }
-
-            inline int size() const {
-                  return count;
-            }
-            inline bool empty() const {
-                  return size() == 0;
-            }
-
-            int& front() {
-                  return front->data;
-            }
-            int& rear() {
-                  return rear->data;
-            }
-
-            void enqueue(int d) {
-                  if (empty())
-                        front = rear = new node(d);
-                  else
-                        rear = rear->next = new node(d);
-                  ++count;
-            }
-            void dequeue() {
-                  if (empty())
-                        return;
-                  node* removeThis = front;
-                  front            = front->next;
-                  delete removeThis;
-                  removeThis = NULL;
-                  --count;
-            }
-      };
-}    // namespace prepare
-namespace test
-{}    // namespace test
+      void Test();
+}    // namespace test
 }    // namespace test1
 
 #endif

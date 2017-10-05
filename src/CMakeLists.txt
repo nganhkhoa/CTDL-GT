@@ -10,8 +10,11 @@ add_library(tutlab
     "tut2lab.cpp"
     "tut3lab.cpp"
     "tut4lab.cpp")
+
+add_library(labtest
+    "test1.cpp")
 # add libs names here
-set (allLibs "tutlab")
+set (allLibs "tutlab" "labtest")
 
 if (TEST)
 
