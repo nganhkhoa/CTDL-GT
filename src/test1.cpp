@@ -43,6 +43,28 @@ namespace test
             cout << *list << endl;
       }
 
+      void StackTest() {
+            Stack* stack = new Stack();
+            stack->push(1);
+            stack->push(2);
+            stack->push(3);
+            stack->push(4);
+            stack->pop();
+            cout << *stack << endl;
+      }
+
+      void reverseTest() {
+            LinkedList* list = new LinkedList();
+            list->insertAt(1, 1);
+            list->insertAt(2, 2);
+            list->insertAt(3, 3);
+
+            list->reverse_using_stack();
+            cout << *list << endl;
+
+            list->reverse_using_queue();
+            cout << *list << endl;
+      }
       void Test() {
             question1a(3);
             question1a(6);
@@ -50,6 +72,9 @@ namespace test
             question1b(6);
 
             LinkedListTest();
+            StackTest();
+
+            reverseTest();
       }
 }    // namespace test
 }    // namespace test1
