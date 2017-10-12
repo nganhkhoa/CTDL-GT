@@ -1,28 +1,10 @@
-# PROJECT
+# CO2003 CTDL&GT Fall 2017
 
 ## About
 
-This is a prebuilt program by Nguyen Anh Khoa aka Luibo
-
-This program is a mere console C++ program with
-
-* unit test by [google test](https://github.com/google/googletest/tree/master/googletest)
-* logging system by [spdlog](https://github.com/gabime/spdlog)
-* format definitions in [.clang-format](clang.llvm.org/docs/ClangFormatStyleOptions.html)
-
-Future update will get 
-
-* [ ] [Google Mock](https://github.com/google/googletest/tree/master/googlemock)
-* [ ] [Boost](www.boost.org)
-* [ ] ... may someone recommend me ...
-
-For best experience, use [Visual Studio Code](https://code.visualstudio.com/)
+Bài tập về môn cấu trúc dữ liệu và giải thuật
 
 ## Licensing
-
-I don't know about licensing
-
-Will update in future
 
 ---
 
