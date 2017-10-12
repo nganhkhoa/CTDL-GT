@@ -9,7 +9,7 @@ namespace test1
 {
 namespace prepare
 {}    // namespace prepare
-namespace test
+namespace L02
 {
       void question1a(int size = 0, int space = 0) {
             if (size == 0)
@@ -76,5 +76,9 @@ namespace test
 
             reverseTest();
       }
-}    // namespace test
+}    // namespace L02
+namespace L01
+{
+      void Test() {}
+}    // namespace L01
 }    // namespace test1

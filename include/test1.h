@@ -7,7 +7,7 @@ namespace test1
 {
 namespace prepare
 {}    // namespace prepare
-namespace test
+namespace L02
 {
       class Stack {
           private:
@@ -247,7 +247,21 @@ namespace test
       };
 
       void Test();
-}    // namespace test
+}    // namespace L02
+
+namespace L01
+{
+      struct node
+      {
+            int   data;
+            node* next;
+
+            node(int d = 0, node* n = NULL) : data(d), next(n) {}
+      };
+
+      
+      void Test();
+}    // namespace L01
 }    // namespace test1
 
 #endif
