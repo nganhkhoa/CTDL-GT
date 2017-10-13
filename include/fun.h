@@ -79,8 +79,20 @@ inline void Queue_LinkedListTest() {
 inline void BinaryTreeTest() {
       data::BinaryTree<int>* myTree = new data::BinaryTree<int>();
       myTree->insert(5);
-      myTree->insert(0);
-      myTree->insert(9);
+      myTree->insert(2);
+      myTree->insert(-4);
+      myTree->insert(3);
+      myTree->insert(18);
+      myTree->insert(21);
+      myTree->insert(19);
+      myTree->insert(25);
+      std::cout << *myTree << std::endl;
+
+      myTree->remove(-4);
+      std::cout << *myTree << std::endl;
+      myTree->remove(18);
+      std::cout << *myTree << std::endl;
+      myTree->remove(21);
       std::cout << *myTree << std::endl;
 }
 }

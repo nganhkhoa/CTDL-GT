@@ -18,11 +18,6 @@ class BinaryTree {
       };
 
       typedef int size_t;
-      enum class DIRECTION : int
-      {
-            LEFT  = 1,
-            RIGHT = 2,
-      };
 
       Node*  _root;
       size_t _size;
@@ -47,9 +42,8 @@ class BinaryTree {
 
       void clear() {
             while (!isEmpty()) {
-                  remove(_root);
+                  // remove(_root->data);
             }
-            _root = NULL;
       }
 
       inline bool isEmpty() const {
@@ -95,6 +89,15 @@ class BinaryTree {
                   return true;
             return false;
       }
+      int minData(Node* n) {
+            if (n->left)
+                  return minData(n->left);
+            else if (n->right)
+                  return minData(n->right);
+            else {
+                  return n->data;
+            }
+      }
 
       // insert
     protected:
@@ -105,6 +108,55 @@ class BinaryTree {
                   insert(d, root->left);
             else
                   insert(d, root->right);
+
+            /**
+             * A no recursive way
+             * Node* temp = _root;
+             * while (temp != NULL) {
+             *    if (d < temp->data)
+             *          temp = temp->left;
+             *    else
+             *          temp = temp->right;
+             * }
+             * temp = new Node(d);
+             * ++_size;
+             */
+      }
+
+      void remove(data_type d, Node*& deleteNode) {
+            if (deleteNode == NULL)
+                  return;
+
+            if (d < deleteNode->data)
+                  remove(d, deleteNode->left);
+            else if (d > deleteNode->data)
+                  remove(d, deleteNode->right);
+            else {
+                  // deleteNode is the node to be deleted
+                  if (hasNoChild(deleteNode)) {
+                        delete deleteNode;
+                        deleteNode = NULL;
+                  }
+
+                  else if (hasTwoChild(deleteNode)) {
+                        data_type min    = minData(deleteNode->right);
+                        deleteNode->data = min;
+                        remove(min, deleteNode->right);
+                  }
+
+                  else {
+                        // one child
+                        Node* temp = deleteNode;
+
+                        if (deleteNode->left)
+                              deleteNode = deleteNode->left;
+                        else
+                              deleteNode = deleteNode->right;
+
+                        delete temp;
+                        temp = NULL;
+                  }
+            }
       }
 
     public:
@@ -113,7 +165,20 @@ class BinaryTree {
             ++_size;
       }
 
-      void remove(Node* preNode, DIRECTION dir) {}
+      void remove(data_type d) {
+            if (isEmpty())
+                  return;
+            // delete root
+            if (_root->data == d) {
+            }
+
+            // delete child of root
+            else {
+                  remove(d, _root);
+            }
+
+            --_size;
+      }
 };
 }
 
