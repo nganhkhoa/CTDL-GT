@@ -123,9 +123,9 @@ class BinaryTree {
              */
       }
 
-      void remove(data_type d, node*& deleteNode) {
+      bool remove(data_type d, node*& deleteNode) {
             if (deleteNode == NULL)
-                  return;
+                  return false;
 
             if (d < deleteNode->data)
                   remove(d, deleteNode->left);
@@ -157,6 +157,7 @@ class BinaryTree {
                         temp = NULL;
                   }
             }
+            return true;
       }
 
     public:
@@ -165,13 +166,12 @@ class BinaryTree {
             ++_size;
       }
 
-      void remove(data_type d) {
+      bool remove(data_type d) {
             if (isEmpty())
                   return;
 
-            remove(d, _root);
-
-            --_size;
+            if (remove(d, _root))
+                  --_size;
       }
 };
 }
