@@ -94,6 +94,8 @@ inline void BinaryTreeTest() {
       std::cout << *myTree << std::endl;
       myTree->remove(21);
       std::cout << *myTree << std::endl;
+
+      delete myTree;
 }
 }
 #endif
