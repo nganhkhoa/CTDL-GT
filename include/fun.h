@@ -95,6 +95,9 @@ inline void BinaryTreeTest() {
       myTree->remove(21);
       std::cout << *myTree << std::endl;
 
+      // remove non-exist data
+      myTree->remove(21);
+
       delete myTree;
 }
 }

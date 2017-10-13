@@ -168,10 +168,13 @@ class BinaryTree {
 
       bool remove(data_type d) {
             if (isEmpty())
-                  return;
+                  return false;
 
-            if (remove(d, _root))
+            if (remove(d, _root)) {
                   --_size;
+                  return true;
+            }
+            return false;
       }
 };
 }
