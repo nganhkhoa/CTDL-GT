@@ -189,17 +189,19 @@ class BinaryTree {
             }
             node* temp = _root;
             while (true) {
-                  if (d < temp->left) {
+                  if (d < temp->data) {
                         if (!temp->left) {
                               temp->left = new node(d);
                               break;
                         }
+                        temp = temp->left;
                   }
                   else {
                         if (!temp->right) {
                               temp->right = new node(d);
                               break;
                         }
+                        temp = temp->right;
                   }
             }
             ++_size;
