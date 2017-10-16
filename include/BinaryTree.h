@@ -99,6 +99,22 @@ class BinaryTree {
             return o;
       }
 
+    protected:
+      find(const data_type& d, node* root) {
+            if (root == NULL)
+                  return false;
+            else if (d == root->data)
+                  return true;
+            else if (d < root->data)
+                  find(d, root->left);
+            else
+                  find(d, root->right);
+      }
+
+    public:
+      bool find(const data_type& d) {
+            return find(d, _root);
+      }
 
     protected:
       void insert(data_type d, node*& root) {
@@ -118,7 +134,7 @@ class BinaryTree {
              *    else
              *          temp = temp->right;
              * }
-             * temp = new Node(d);
+             * temp = new node(d);
              * ++_size;
              */
       }
@@ -166,6 +182,29 @@ class BinaryTree {
             ++_size;
       }
 
+      void insert0R(data_type d) {
+            if (isEmpty()) {
+                  _root = new node();
+                  return;
+            }
+            node* temp = _root;
+            while (true) {
+                  if (d < temp->left) {
+                        if (!temp->left) {
+                              temp->left = new node(d);
+                              break;
+                        }
+                  }
+                  else {
+                        if (!temp->right) {
+                              temp->right = new node(d);
+                              break;
+                        }
+                  }
+            }
+            ++_size;
+      }
+
       bool remove(data_type d) {
             if (isEmpty())
                   return false;
@@ -175,6 +214,12 @@ class BinaryTree {
                   return true;
             }
             return false;
+      }
+
+      void balanceTree() {
+            data_type RootData = _root->data;
+            if (remove(RootData))
+                  insert(RootData);
       }
 };
 }

@@ -86,6 +86,7 @@ inline void BinaryTreeTest() {
       myTree->insert(21);
       myTree->insert(19);
       myTree->insert(25);
+      myTree->insert0R(17);
       std::cout << *myTree << std::endl;
 
       myTree->remove(-4);
