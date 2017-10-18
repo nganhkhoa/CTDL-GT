@@ -14,6 +14,7 @@
 #include <tut2lab.h>
 #include <tut3lab.h>
 #include <tut4lab.h>
+#include <tut5lab.h>
 
 #include <test1.h>
 

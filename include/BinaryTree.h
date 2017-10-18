@@ -100,7 +100,7 @@ class BinaryTree {
       }
 
     protected:
-      find(const data_type& d, node* root) {
+      bool find(const data_type& d, node* root) {
             if (root == NULL)
                   return false;
             else if (d == root->data)
@@ -124,19 +124,6 @@ class BinaryTree {
                   insert(d, root->left);
             else
                   insert(d, root->right);
-
-            /**
-             * A no recursive way
-             * node* temp = _root;
-             * while (temp != NULL) {
-             *    if (d < temp->data)
-             *          temp = temp->left;
-             *    else
-             *          temp = temp->right;
-             * }
-             * temp = new node(d);
-             * ++_size;
-             */
       }
 
       bool remove(data_type d, node*& deleteNode) {
