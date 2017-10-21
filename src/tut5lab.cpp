@@ -168,6 +168,8 @@ namespace lab
             cout << "s = " << to_string(sample_tree->search("s")) << endl;
             cout << "t = " << to_string(sample_tree->search("t")) << endl;
       }
+
+
 }    // namespace lab
 namespace onclass
 {}    // namespace onclass

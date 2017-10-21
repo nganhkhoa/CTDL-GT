@@ -54,10 +54,9 @@ namespace lab
           private:
             int       data;
             int       count;
-            TreeNode* left;
-            TreeNode* right;
+            IntNode* left;
+            IntNode* right;
 
-          public:
       };
 
       BinarySearchTree* buildTreeFromString(std::string);
