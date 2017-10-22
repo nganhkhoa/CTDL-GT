@@ -62,6 +62,9 @@ namespace lab
 
       BinarySearchTree* buildTreeFromString(std::string);
 
+
+      void labTest();
+
 }    // namespace lab
 namespace onclass
 {}    // namespace onclass

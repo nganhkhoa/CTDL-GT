@@ -1,10 +1,11 @@
 #include <tut5lab.h>
-
 #include <string>
 #include <iostream>
 
 using std::string;
 using std::cout;
+using std::endl;
+using std::to_string;
 
 namespace week5
 {
@@ -14,14 +15,14 @@ namespace lab
 {
       TreeNode::TreeNode(string c) {
             character = c;
-            count     = 0;
+            count     = 1;
             left      = NULL;
             right     = NULL;
       }
 
       TreeNode::TreeNode(char c) {
             character = c;
-            count     = 0;
+            count     = 1;
             left      = NULL;
             right     = NULL;
       }
@@ -88,21 +89,26 @@ namespace lab
 
             TreeNode* temp = root;
             while (true) {
-                  if (tn->character < temp->character)
-                        if (temp->left)
-                              temp = temp->left;
+                  if (tn->getChar() < temp->getChar())
+                        if (temp->getLeft())
+                              temp = temp->getLeft();
                         else {
-                              temp->left = tn;
+                              temp->setLeft(tn);
                               break;
                         }
 
-                  else {
-                        if (temp->right)
-                              temp = temp->right;
+                  else if (tn->getChar() > temp->getChar()) {
+                        if (temp->getRight())
+                              temp = temp->getRight();
                         else {
-                              temp->right = tn;
+                              temp->setRight(tn);
                               break;
                         }
+                  }
+
+                  else {
+                        temp->increaseCount();
+                        break;
                   }
             }
       }
@@ -110,7 +116,26 @@ namespace lab
       void BinarySearchTree::remove(string s) {}
 
       int BinarySearchTree::search(string s) {
-            return 0;
+            if (root == NULL)
+                  return 0;
+
+            TreeNode* temp = root;
+            while (true) {
+                  if (s < temp->getChar())
+                        if (temp->getLeft())
+                              temp = temp->getLeft();
+                        else
+                              return 0;
+
+                  else if (s > temp->getChar())
+                        if (temp->getRight())
+                              temp = temp->getRight();
+                        else
+                              return 0;
+
+                  else
+                        return temp->getCount();
+            }
       }
 
       void BinarySearchTree::print() {
@@ -125,6 +150,23 @@ namespace lab
                   tree->insert(tn);
             }
             return tree;
+      }
+
+      void labTest() {
+            string sample = "A binary search tree is a binary tree with the "
+                            "following properties: All items in the left "
+                            "subtree are less than the root. All items in the "
+                            "right subtree are greater than or equal to the "
+                            "root. Each subtree is itself a binarysearch tree.";
+
+            BinarySearchTree* sample_tree = buildTreeFromString(sample);
+            sample_tree->print();
+
+            cout << endl;
+
+            cout << "b = " << to_string(sample_tree->search("b")) << endl;
+            cout << "s = " << to_string(sample_tree->search("s")) << endl;
+            cout << "t = " << to_string(sample_tree->search("t")) << endl;
       }
 }    // namespace lab
 namespace onclass
