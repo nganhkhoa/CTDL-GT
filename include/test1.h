@@ -99,11 +99,11 @@ namespace L02
                   _rear  = NULL;
             }
 
-            inline size() const {
+            inline size_t size() const {
                   return _size;
             }
 
-            inline empty() const {
+            inline bool empty() const {
                   return size() == 0;
             }
 
