@@ -55,8 +55,8 @@ int main(int argc, char** argv) {
       // week4::lab::labTest();
       // week4::tut::tutTest();
 
-      week5::lab::labTest();
-      // week5::tut::tutTest();
+      week5::labTest();
+      week5::tutTest();
 
       // test1::L01::Test();
       // test1::L02::Test();

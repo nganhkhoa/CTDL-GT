@@ -5,107 +5,76 @@
 
 namespace week5
 {
-namespace tut
-{
-      class TreeNode {
-          private:
-            std::string character;
-            int         count;
-            TreeNode*   left;
-            TreeNode*   right;
 
-          public:
-            TreeNode(std::string);
-            TreeNode(char);
-            ~TreeNode();
+class TreeNode {
+    private:
+      std::string character;
+      int         count;
+      TreeNode*   left;
+      TreeNode*   right;
 
-            void increaseCount();
+    public:
+      TreeNode(std::string);
+      TreeNode(char);
+      ~TreeNode();
 
-            int  getCount();
-            void setCount(int);
+      void increaseCount();
 
-            std::string getChar();
-            void        setChar(std::string);
+      int  getCount();
+      void setCount(int);
 
-            TreeNode* getLeft();
-            void      setLeft(TreeNode*);
+      std::string getChar();
+      void        setChar(std::string);
 
-            TreeNode* getRight();
-            void      setRight(TreeNode*);
+      TreeNode* getLeft();
+      void      setLeft(TreeNode*);
 
-            void print();
-      };
+      TreeNode* getRight();
+      void      setRight(TreeNode*);
 
-      TreeNode* loopInsert(TreeNode*, TreeNode*);
-      void      printPath(TreeNode*, int);
-      void      printLeavesBFT(TreeNode*);
-      void      printLeavesLNR(TreeNode*);
-      void      printLeavesNLR(TreeNode*);
-      void      loopTraverseNLR(int*, int);
-      void      loopTraverseLNR(int*, int);
-      void      loopTraverseBFS(int*, int);
-}    // namespace tut
-namespace lab
-{
-      class TreeNode {
-          private:
-            std::string character;
-            int         count;
-            TreeNode*   left;
-            TreeNode*   right;
+      void print();
+};
 
-          public:
-            TreeNode(std::string);
-            TreeNode(char);
-            ~TreeNode();
+class BinarySearchTree {
+    private:
+      TreeNode* root = NULL;
 
-            void increaseCount();
+    public:
+      ~BinarySearchTree();
+      void insert(TreeNode*);
+      void remove(std::string);
+      int  search(std::string);
+      void print();
+};
 
-            int  getCount();
-            void setCount(int);
+class IntNode {
+    private:
+      int      data;
+      int      count;
+      IntNode* left;
+      IntNode* right;
 
-            std::string getChar();
-            void        setChar(std::string);
-
-            TreeNode* getLeft();
-            void      setLeft(TreeNode*);
-
-            TreeNode* getRight();
-            void      setRight(TreeNode*);
-
-            void print();
-      };
-
-      class BinarySearchTree {
-          private:
-            TreeNode* root = NULL;
-
-          public:
-            ~BinarySearchTree();
-            void insert(TreeNode*);
-            void remove(std::string);
-            int  search(std::string);
-            void print();
-      };
-
-      class IntNode {
-          private:
-            int      data;
-            int      count;
-            IntNode* left;
-            IntNode* right;
-
-          public:
-            bool BSTcheck();
-            int  Height();
-      };
-
-      BinarySearchTree* buildTreeFromString(std::string);
+    public:
+      bool BSTcheck();
+      int  Height();
+};
 
 
-      void labTest();
+TreeNode* loopInsert(TreeNode*, TreeNode*);
+void      printPath(TreeNode*, std::string);
+void      printLeavesBFT(TreeNode*);
+void      printLeavesLNR(TreeNode*);
+void      printLeavesNLR(TreeNode*);
+void      loopTraverseNLR(int*, int);
+void      loopTraverseLNR(int*, int);
+void      loopTraverseBFS(int*, int);
 
-}    // namespace lab
+BinarySearchTree* buildTreeFromString(std::string);
+
+
+void labTest();
+void tutTest();
+
 namespace onclass
 {}    // namespace onclass
 }    // namespace week5

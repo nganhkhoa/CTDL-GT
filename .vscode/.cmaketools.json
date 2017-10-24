@@ -15,23 +15,21 @@
         "name": "Debug",
         "projects": [
           {
-            "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build",
+            "buildDirectory": "/home/luibo/Desktop/CTDL-GT/build",
             "name": "project",
-            "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt",
+            "sourceDirectory": "/home/luibo/Desktop/CTDL-GT",
             "targets": [
               {
                 "artifacts": [
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.exe",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libproject.dll.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/bin/project.pdb"
+                  "/home/luibo/Desktop/CTDL-GT/bin/project"
                 ],
-                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
+                "buildDirectory": "/home/luibo/Desktop/CTDL-GT/build/src",
                 "fileGroups": [
                   {
-                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
+                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -pthread -g  ",
                     "includePath": [
                       {
-                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
+                        "path": "/home/luibo/Desktop/CTDL-GT/include"
                       }
                     ],
                     "isGenerated": false,
@@ -42,27 +40,25 @@
                     ]
                   }
                 ],
-                "fullName": "project.exe",
-                "linkLanguageFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g",
-                "linkLibraries": "libtutlab.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+                "fullName": "project",
+                "linkLanguageFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -pthread -g",
+                "linkLibraries": "libtutlab.a liblabtest.a",
                 "linkerLanguage": "CXX",
                 "name": "project",
-                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
+                "sourceDirectory": "/home/luibo/Desktop/CTDL-GT/src",
                 "type": "EXECUTABLE"
               },
               {
                 "artifacts": [
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.a",
-                  "D:/Dropbox/programming/C++/project/ctdl-gt/build/src/libtutlab.pdb"
+                  "/home/luibo/Desktop/CTDL-GT/build/src/libtutlab.a"
                 ],
-                "buildDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/build/src",
+                "buildDirectory": "/home/luibo/Desktop/CTDL-GT/build/src",
                 "fileGroups": [
                   {
-                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -g  ",
+                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -pthread -g  ",
                     "includePath": [
                       {
-                        "path": "D:/Dropbox/programming/C++/project/ctdl-gt/include"
+                        "path": "/home/luibo/Desktop/CTDL-GT/include"
                       }
                     ],
                     "isGenerated": false,
@@ -71,14 +67,41 @@
                       "tut1lab.cpp",
                       "tut2lab.cpp",
                       "tut3lab.cpp",
-                      "tut4lab.cpp"
+                      "tut4lab.cpp",
+                      "tut5lab.cpp"
                     ]
                   }
                 ],
                 "fullName": "libtutlab.a",
                 "linkerLanguage": "CXX",
                 "name": "tutlab",
-                "sourceDirectory": "D:/Dropbox/programming/C++/project/ctdl-gt/src",
+                "sourceDirectory": "/home/luibo/Desktop/CTDL-GT/src",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/home/luibo/Desktop/CTDL-GT/build/src/liblabtest.a"
+                ],
+                "buildDirectory": "/home/luibo/Desktop/CTDL-GT/build/src",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wall -static -static-libgcc -static-libstdc++ -fextended-identifiers --input-charset=utf-8 -finput-charset=utf-8 --exec-charset=utf-8 -std=c++11 -pthread -g  ",
+                    "includePath": [
+                      {
+                        "path": "/home/luibo/Desktop/CTDL-GT/include"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "test1.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "liblabtest.a",
+                "linkerLanguage": "CXX",
+                "name": "labtest",
+                "sourceDirectory": "/home/luibo/Desktop/CTDL-GT/src",
                 "type": "STATIC_LIBRARY"
               }
             ]
@@ -86,7 +109,7 @@
         ]
       }
     ],
-    "cookie": "0.8623774445895414",
+    "cookie": "0.13513393478648483",
     "inReplyTo": "codemodel",
     "type": "reply"
   }
