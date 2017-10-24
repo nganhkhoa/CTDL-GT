@@ -6,7 +6,45 @@
 namespace week5
 {
 namespace tut
-{}    // namespace tut
+{
+      class TreeNode {
+          private:
+            std::string character;
+            int         count;
+            TreeNode*   left;
+            TreeNode*   right;
+
+          public:
+            TreeNode(std::string);
+            TreeNode(char);
+            ~TreeNode();
+
+            void increaseCount();
+
+            int  getCount();
+            void setCount(int);
+
+            std::string getChar();
+            void        setChar(std::string);
+
+            TreeNode* getLeft();
+            void      setLeft(TreeNode*);
+
+            TreeNode* getRight();
+            void      setRight(TreeNode*);
+
+            void print();
+      };
+
+      TreeNode* loopInsert(TreeNode*, TreeNode*);
+      void      printPath(TreeNode*, int);
+      void      printLeavesBFT(TreeNode*);
+      void      printLeavesLNR(TreeNode*);
+      void      printLeavesNLR(TreeNode*);
+      void      loopTraverseNLR(int*, int);
+      void      loopTraverseLNR(int*, int);
+      void      loopTraverseBFS(int*, int);
+}    // namespace tut
 namespace lab
 {
       class TreeNode {
@@ -52,11 +90,14 @@ namespace lab
 
       class IntNode {
           private:
-            int       data;
-            int       count;
+            int      data;
+            int      count;
             IntNode* left;
             IntNode* right;
 
+          public:
+            bool BSTcheck();
+            int  Height();
       };
 
       BinarySearchTree* buildTreeFromString(std::string);

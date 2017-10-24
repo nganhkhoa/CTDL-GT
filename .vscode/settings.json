@@ -3,6 +3,7 @@
 	"editor.formatOnType": false,
 	"editor.insertSpaces": true,
 	"editor.tabSize": 6,
+	"editor.detectIndentation": false,
 
 	"files.associations": {
 		"*.m": "matlab",
@@ -45,7 +46,6 @@
 		"build/CMakeFiles": true
 	},
 
-	"C_Cpp.clang_format_path": "C:\\Program Files\\LLVM\\bin\\clang-format.exe",
 	"C_Cpp.clang_format_formatOnSave": true,
 
 	// intellisense engine is not properly working
@@ -80,5 +80,6 @@
 			"color": "purple",
 			"backgroundColor": "rgba(16,100,60,.2)"
 		}
-	]
+      ],
+      "C_Cpp.intelliSenseEngine": "Tag Parser"
 }

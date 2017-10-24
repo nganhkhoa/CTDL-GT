@@ -10,7 +10,22 @@ using std::to_string;
 namespace week5
 {
 namespace tut
-{}    // namespace tut
+{
+      TreeNode* loopInsert(TreeNode* root, TreeNode* newNode) {}
+
+      void printPath(TreeNode* subroot, int searchedData) {}
+
+
+      void printLeavesBFT(TreeNode* root) {}
+
+      void printLeavesLNR(TreeNode* subroot) {}
+
+      void printLeavesNLR(TreeNode* subroot) {}
+
+      void loopTraverseNLR(int* bst, int size) {}
+      void loopTraverseLNR(int* bst, int size) {}
+      void loopTraverseBFS(int* bst, int size) {}
+}    // namespace tut
 namespace lab
 {
       TreeNode::TreeNode(string c) {
@@ -150,6 +165,42 @@ namespace lab
                   tree->insert(tn);
             }
             return tree;
+      }
+
+      bool IntNode::BSTcheck() {
+            if (left && right) {
+                  if (data >= left->data)
+                        return false;
+                  if (data < right->data)
+                        return false;
+                  return left->BSTcheck() && right->BSTcheck();
+            }
+
+            if (left) {
+                  if (data >= left->data)
+                        return false;
+                  else
+                        return left->BSTcheck();
+            }
+
+            if (right) {
+                  if (data < right->data)
+                        return false;
+                  else
+                        return right->BSTcheck();
+            }
+
+            return true;
+      }
+
+      int IntNode::Height() {
+            if (!left && !right)
+                  return 0;
+
+            int leftHeight  = left->Height() + 1;
+            int rightHeight = right->Height() + 1;
+
+            return leftHeight > rightHeight ? leftHeight : rightHeight;
       }
 
       void labTest() {
