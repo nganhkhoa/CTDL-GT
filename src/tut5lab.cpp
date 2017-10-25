@@ -169,7 +169,7 @@ void BinarySearchTree::insert(TreeNode* tn) {
 
 void BinarySearchTree::remove(string s) {
       if (!isEmpty()) {
-            root->remove(s);
+            root = root->remove(s);
       }
 }
 
