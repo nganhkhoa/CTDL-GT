@@ -26,10 +26,8 @@ TreeNode::TreeNode(char c) {
 }
 
 TreeNode::~TreeNode() {
-      if (left)
-            delete left;
-      if (right)
-            delete right;
+      left  = NULL;
+      right = NULL;
 }
 
 void TreeNode::increaseCount() {
@@ -240,8 +238,13 @@ int IntNode::Height() {
       if (!left && !right)
             return 0;
 
-      int leftHeight  = left->Height() + 1;
-      int rightHeight = right->Height() + 1;
+      int leftHeight = 0;
+      if (left)
+            left->Height() + 1;
+
+      int rightHeight = 0;
+      if (right)
+            right->Height() + 1;
 
       return leftHeight > rightHeight ? leftHeight : rightHeight;
 }
@@ -354,7 +357,19 @@ void printLeavesNLR(TreeNode* subroot) {
       printLeavesNLR(subroot->getRight());
 }
 
-void loopTraverseNLR(int* bst, int size) {}
+void loopTraverseNLR(int* bst, int size) {
+      if (size <= 0) {
+            cout << endl;
+            return;
+      }
+
+      if (*bst >= 0)
+            cout << *bst << " ";
+
+      loopTraverseNLR(bst + 1, size - 1);
+
+      loopTraverseNLR(bst + 2, size - 2);
+}
 void loopTraverseLNR(int* bst, int size) {}
 void loopTraverseBFS(int* bst, int size) {}
 
