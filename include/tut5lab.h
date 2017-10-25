@@ -33,6 +33,9 @@ class TreeNode {
       void      setRight(TreeNode*);
 
       void print();
+
+      TreeNode* remove(std::string);
+      TreeNode* min();
 };
 
 class BinarySearchTree {
@@ -41,10 +44,13 @@ class BinarySearchTree {
 
     public:
       ~BinarySearchTree();
-      void insert(TreeNode*);
-      void remove(std::string);
-      int  search(std::string);
-      void print();
+      void        insert(TreeNode*);
+      void        remove(std::string);
+      int         search(std::string);
+      void        print();
+      inline bool isEmpty() const {
+            return root == NULL;
+      }
 };
 
 class IntNode {

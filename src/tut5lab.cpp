@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <Queue_LinkedList.h>
+#include <Stack_LinkedList.h>
 
 using std::string;
 using std::cout;
@@ -71,6 +72,62 @@ void TreeNode::print() {
             right->print();
 }
 
+TreeNode* TreeNode::min() {
+
+      if (!left && !right) {
+            return this;
+      }
+
+      TreeNode* min = NULL;
+      if (left)
+            min = left->min();
+      else if (right)
+            min = right->min();
+
+      return min;
+}
+
+TreeNode* TreeNode::remove(string s) {
+      if (s < character) {
+            if (left)
+                  left = left->remove(s);
+      }
+
+      else if (s > character) {
+            if (right)
+                  right = right->remove(s);
+      }
+
+      else {
+            if (!left && !right) {
+                  delete this;
+                  return NULL;
+            }
+
+            else if (left && right) {
+                  TreeNode* min = right->min();
+                  character     = min->getChar();
+                  count         = min->getCount();
+
+                  right = right->remove(character);
+            }
+
+            else {
+                  TreeNode* temp = NULL;
+
+                  if (left)
+                        temp = left;
+                  else
+                        temp = right;
+
+                  delete this;
+                  return temp;
+            }
+      }
+
+      return this;
+}
+
 
 BinarySearchTree::~BinarySearchTree() {
       if (root)
@@ -110,7 +167,11 @@ void BinarySearchTree::insert(TreeNode* tn) {
       }
 }
 
-void BinarySearchTree::remove(string s) {}
+void BinarySearchTree::remove(string s) {
+      if (!isEmpty()) {
+            root->remove(s);
+      }
+}
 
 int BinarySearchTree::search(string s) {
       if (root == NULL)
@@ -256,10 +317,11 @@ void printLeavesBFT(TreeNode* root) {
       if (root == NULL)
             return;
 
-      data::Queue_LinkedList<TreeNode*> queue;
+      data::Queue_LinkedList<TreeNode*>* queue =
+         new data::Queue_LinkedList<TreeNode*>();
       queue->enqueue(root);
 
-      while (!queue.isEmpty()) {
+      while (!queue->isEmpty()) {
             TreeNode* temp = queue->front();
             if (temp->getLeft() == NULL && temp->getRight() == NULL)
                   cout << "Leaf: " << temp->getChar() << "\n";
@@ -292,24 +354,16 @@ void printLeavesNLR(TreeNode* subroot) {
       printLeavesNLR(subroot->getRight());
 }
 
-void loopTraverseNLR(int* bst, int size) {
-      if (size == 0)
-            return;
-
-      if (*bst < 0)
-            loopTraverseNLR(bst + 1, size - 1);
-}
-void loopTraverseLNR(int* bst, int size) {
-      if (size == 0)
-            return;
-
-      if (*bst < 0)
-            loopTraverseLNR(bst + 1, size - 1);
-}
+void loopTraverseNLR(int* bst, int size) {}
+void loopTraverseLNR(int* bst, int size) {}
 void loopTraverseBFS(int* bst, int size) {}
 
 
-void tutTest() {}
+void tutTest() {
+      int size      = 7;
+      int bst[size] = {17, 10, 21, -1, -1, 19, 25};
+      loopTraverseNLR(bst, size);
+}
 
 
 namespace onclass
