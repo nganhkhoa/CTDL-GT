@@ -8,7 +8,7 @@
 namespace data
 {
 template <class data_type>
-class Queue_LinkedList : protected SinglyLinkedList<data_type> {
+class Queue_LinkedList : public SinglyLinkedList<data_type> {
     public:
       Queue_LinkedList<data_type>() : SinglyLinkedList<data_type>() {}
       ~Queue_LinkedList<data_type>() {}

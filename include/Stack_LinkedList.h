@@ -8,7 +8,7 @@
 namespace data
 {
 template <class data_type>
-class Stack_LinkedList : protected SinglyLinkedList<data_type> {
+class Stack_LinkedList : public SinglyLinkedList<data_type> {
 
     public:
       Stack_LinkedList<data_type>() : SinglyLinkedList<data_type>() {}
