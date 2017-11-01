@@ -1,12 +1,12 @@
 #include <tut6lab.h>
-
+#include <AVL.h>
 
 namespace week6
 {
 namespace lab
 {
       void labTest() {
-            AVL<int>* tree = new AVL<int>();
+            data::AVL<int>* tree = new data::AVL<int>();
             tree->insert(32);
             tree->insert(73);
             tree->insert(62);
@@ -29,6 +29,31 @@ namespace lab
             tree->remove(26);
             tree->remove(29);
             tree->remove(5);
+
+            data::SinglyLinkedList<int*>* searchList = tree->search(26);
+
+            for (int* result : *searchList) {
+                  std::cout << result << std::endl;
+            }
+
+            tree->insert(79);
+            tree->insert(79);
+            tree->insert(79);
+            tree->insert(79);
+            tree->insert(79);
+            tree->insert(79);
+
+            delete searchList;
+            searchList = tree->search(79);
+
+            // this should print 7 lines
+            // with different address
+            for (int* result : *searchList) {
+                  std::cout << result << std::endl;
+            }
+
+            delete searchList;
+            searchList = NULL;
       }
 }    // namespace lab
 namespace tut
