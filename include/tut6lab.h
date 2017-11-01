@@ -14,6 +14,8 @@ namespace lab
 
                   enum class BF : int
                   {
+                        // balance is calculated by
+                        // subtraction of two height
                         farLeft = -2,
                         left,
                         equal,
@@ -55,6 +57,7 @@ namespace lab
                         if (left && right)
                               balance = BF(right->height - left->height);
                         else if (left)
+                              // left is < 0
                               balance = BF(-left->height);
                         else if (right)
                               balance = BF(right->height);
@@ -123,9 +126,11 @@ namespace lab
                   }
             };
 
-            node* root;
-            int   _size;
+            // data
+            node*  root;
+            size_t _size;
 
+            // method
             void insert(node*& n, data_type d) {
                   if (n == NULL) {
                         n = new node(d);
@@ -144,19 +149,43 @@ namespace lab
             }
 
           public:
-            void insert(data_type d) {
-                  if (root == nullptr) {
-                        root = new node(d);
-                  }
-                  else {
-                        if (d < root->data)
-                              insert(root->left, d);
-                        else
-                              insert(root->right, d);
+            // what user use
 
-                        root->resetNode();
-                        root = root->balanceNode();
+            inline size_t size() const {
+                  return _size;
+            }
+
+            inline bool isEmpty() const {
+                  return size() == 0;
+            }
+
+            bool isFull() const {
+                  try {
+                        node* temp = new node({});
+                        delete temp;
+                        temp = nullptr;
+                        return false;
+                  } catch (std::bad_alloc& bal) {
+                        return true;
                   }
+            }
+
+            void insert(data_type d) {
+                  if (isFull())
+                        return;
+
+                  if (isEmpty())
+                        root = new node(d);
+
+                  else if (d < root->data)
+                        insert(root->left, d);
+
+                  else
+                        insert(root->right, d);
+
+                  root->resetNode();
+                  root = root->balanceNode();
+
                   _size++;
                   return;
             }
