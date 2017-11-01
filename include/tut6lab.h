@@ -68,10 +68,8 @@ namespace lab
                         this->right   = newRoot->left;
                         newRoot->left = this;
 
-                        this->setHeight();
-                        newRoot->setHeight();
-                        this->setBalance();
-                        newRoot->setBalance();
+                        this->resetNode();
+                        newRoot->resetNode();
 
                         return newRoot;
                   }
@@ -82,10 +80,8 @@ namespace lab
                         this->left     = newRoot->right;
                         newRoot->right = this;
 
-                        this->setHeight();
-                        newRoot->setHeight();
-                        this->setBalance();
-                        newRoot->setBalance();
+                        this->resetNode();
+                        newRoot->resetNode();
 
                         return newRoot;
                   }
@@ -145,7 +141,6 @@ namespace lab
 
                   n->resetNode();
                   n = n->balanceNode();
-                  n->resetNode();
             }
 
           public:
@@ -161,7 +156,6 @@ namespace lab
 
                         root->resetNode();
                         root = root->balanceNode();
-                        root->resetNode();
                   }
                   _size++;
                   return;
