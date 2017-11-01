@@ -10,7 +10,8 @@ add_library(tutlab
     "tut2lab.cpp"
     "tut3lab.cpp"
     "tut4lab.cpp"
-    "tut5lab.cpp")
+    "tut5lab.cpp"
+    "tut6lab.cpp")
 
 add_library(labtest
     "test1.cpp")

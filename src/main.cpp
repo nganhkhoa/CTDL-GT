@@ -15,6 +15,7 @@
 #include <tut3lab.h>
 #include <tut4lab.h>
 #include <tut5lab.h>
+#include <tut6lab.h>
 
 #include <test1.h>
 
@@ -55,8 +56,11 @@ int main(int argc, char** argv) {
       // week4::lab::labTest();
       // week4::tut::tutTest();
 
-      week5::labTest();
-      week5::tutTest();
+      // week5::labTest();
+      // week5::tutTest();
+
+      week6::lab::labTest();
+      // week6::tut::tutTest();
 
       // test1::L01::Test();
       // test1::L02::Test();
