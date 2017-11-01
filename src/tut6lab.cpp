@@ -22,6 +22,13 @@ namespace lab
             tree->insert(7);
             tree->insert(74);
             tree->insert(5);
+
+            tree->remove(73);
+            tree->remove(43);
+            tree->remove(62);
+            tree->remove(26);
+            tree->remove(29);
+            tree->remove(5);
       }
 }    // namespace lab
 namespace tut

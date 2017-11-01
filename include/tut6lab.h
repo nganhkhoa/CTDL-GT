@@ -32,12 +32,39 @@ namespace lab
 
                   node(data_type d) : data(d) {
                         left = right = nullptr;
-                        height       = 1;
+                        height       = 0;
                         balance      = BF::equal;
                   }
 
                   ~node() {
                         left = right = nullptr;
+                  }
+
+                  bool oneChild() {
+                        return left || right;
+                  }
+
+                  bool noChild() {
+                        return !oneChild();
+                  }
+
+                  bool twoChild() {
+                        return left && right;
+                  }
+
+                  data_type& min() {
+                        if (left)
+                              return left->min();
+                        else
+                              return retrive();
+                  }
+
+                  data_type& retrive() {
+                        return data;
+                  }
+
+                  data_type& retrive() const {
+                        return data;
                   }
 
                   void setHeight() {
@@ -50,7 +77,7 @@ namespace lab
                         else if (right)
                               height = right->height + 1;
                         else
-                              height = 1;
+                              height = 0;
                   }
 
                   void setBalance() {
@@ -58,9 +85,9 @@ namespace lab
                               balance = BF(right->height - left->height);
                         else if (left)
                               // left is < 0
-                              balance = BF(-left->height);
+                              balance = BF(-left->height - 1);
                         else if (right)
-                              balance = BF(right->height);
+                              balance = BF(right->height + 1);
                         else
                               balance = BF::equal;
                   }
@@ -148,6 +175,48 @@ namespace lab
                   n = n->balanceNode();
             }
 
+            bool remove(node*& n, const data_type& d) {
+                  if (n == nullptr)
+                        return false;
+
+                  bool status = false;
+                  if (d < n->data)
+                        status = remove(n->left, d);
+
+                  else if (d > n->data)
+                        status = remove(n->right, d);
+
+                  else {
+                        if (n->noChild()) {
+                              delete n;
+                              n = NULL;
+                        }
+
+                        else if (n->twoChild()) {
+                              data_type& d = n->right->min();
+                              // the only copy, faster
+                              n->data = d;
+                              remove(n->right, d);
+                        }
+
+                        else {
+                              // one child
+                              node* temp = n;
+                              n          = n->left ? n->left : n->right;
+                              delete temp;
+                              temp = nullptr;
+                        }
+
+                        status = true;
+                  }
+
+                  if (n) {
+                        n->resetNode();
+                        n = n->balanceNode();
+                  }
+                  return status;
+            }
+
           public:
             // what user use
 
@@ -170,24 +239,25 @@ namespace lab
                   }
             }
 
-            void insert(data_type d) {
+            bool insert(data_type d) {
                   if (isFull())
-                        return;
+                        return false;
 
-                  if (isEmpty())
-                        root = new node(d);
-
-                  else if (d < root->data)
-                        insert(root->left, d);
-
-                  else
-                        insert(root->right, d);
-
-                  root->resetNode();
-                  root = root->balanceNode();
+                  insert(root, d);
 
                   _size++;
-                  return;
+                  return true;
+            }
+
+            bool remove(const data_type& d) {
+                  if (isEmpty())
+                        return false;
+
+                  if (!remove(root, d))
+                        return false;
+
+                  _size--;
+                  return true;
             }
       };
 
