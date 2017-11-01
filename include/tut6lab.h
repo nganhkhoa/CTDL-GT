@@ -14,9 +14,11 @@ namespace lab
 
                   enum class BF : int
                   {
-                        left = -1,
+                        farLeft = -2,
+                        left,
                         equal,
-                        right
+                        right,
+                        farRight
                   };
 
                   data_type data;
@@ -45,53 +47,83 @@ namespace lab
                               height = left->height + 1;
                         else if (right)
                               height = right->height + 1;
+                        else
+                              height = 1;
                   }
 
                   void setBalance() {
                         if (left && right)
                               balance = BF(right->height - left->height);
                         else if (left)
-                              balance = BF::left;
+                              balance = BF(-left->height);
                         else if (right)
-                              balance = BF::right;
+                              balance = BF(right->height);
+                        else
+                              balance = BF::equal;
                   }
 
-                  void balanceNode() {
+                  node* rotateLeft() {
+                        node* newRoot = this->right;
+
+                        this->right   = newRoot->left;
+                        newRoot->left = this;
+
+                        this->setHeight();
+                        newRoot->setHeight();
+                        this->setBalance();
+                        newRoot->setBalance();
+
+                        return newRoot;
+                  }
+
+                  node* rotateRight() {
+                        node* newRoot = this->left;
+
+                        this->left     = newRoot->right;
+                        newRoot->right = this;
+
+                        this->setHeight();
+                        newRoot->setHeight();
+                        this->setBalance();
+                        newRoot->setBalance();
+
+                        return newRoot;
+                  }
+
+                  node* balanceNode() {
                         switch (balance) {
                               // parent left
-                              case BF::left:
+                              case BF::farLeft:
                                     switch (left->balance) {
                                           case BF::left:
+                                                return rotateRight();
                                           case BF::right:
-                                          case BF::equal:
-                                                return;
+                                                left = left->rotateLeft();
+                                                return rotateRight();
+                                          default:
+                                                return this;
                                     }
-                                    return;
 
                               // parent right
-                              case BF::right:
+                              case BF::farRight:
                                     switch (right->balance) {
                                           case BF::left:
+                                                right = right->rotateRight();
+                                                return rotateLeft();
                                           case BF::right:
-                                          case BF::equal:
-                                                return;
+                                                return rotateLeft();
+                                          default:
+                                                return this;
                                     }
-                                    return;
-
-                              case BF::equal:
-                                    return;
 
                               default:
-                                    return;
+                                    return this;
                         }
                   }
 
                   void resetNode() {
                         setHeight();
                         setBalance();
-
-                        if (balance != BF::equal)
-                              balanceNode();
                   }
             };
 
@@ -112,6 +144,8 @@ namespace lab
                   }
 
                   n->resetNode();
+                  n = n->balanceNode();
+                  n->resetNode();
             }
 
           public:
@@ -126,7 +160,10 @@ namespace lab
                               insert(root->right, d);
 
                         root->resetNode();
+                        root = root->balanceNode();
+                        root->resetNode();
                   }
+                  _size++;
                   return;
             }
       };
