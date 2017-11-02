@@ -33,26 +33,26 @@ namespace lab
                   return *this;
             }
 
-            bool operator<(const contact& c) {
+            bool operator<(const contact& c) const {
                   int name_cmp = strcmp(name, c.name);
                   if (name_cmp == 0)
                         return strcmp(phone, c.phone) < 0;
                   return name_cmp < 0;
             }
 
-            bool operator>(const contact& c) {
+            bool operator>(const contact& c) const {
                   int name_cmp = strcmp(name, c.name);
                   if (name_cmp == 0)
                         return strcmp(phone, c.phone) > 0;
                   return name_cmp > 0;
             }
 
-            bool operator==(const contact& c) {
+            bool operator==(const contact& c) const {
                   return strcmp(name, c.name) == 0 &&
                          strcmp(phone, c.phone) == 0;
             }
 
-            bool operator!=(const contact& c) {
+            bool operator!=(const contact& c) const {
                   return !(*this == c);
             }
 
