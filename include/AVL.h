@@ -261,6 +261,22 @@ class AVL {
             return true;
       }
 
+      void BFStraverse(void (*op)(data_type&)) {
+            Queue_LinkedList<node*> queue;
+            queue.enqueue(root);
+
+            while (!queue.isEmpty()) {
+                  node* temp = queue.front();
+
+                  if (temp->left)
+                        queue.enqueue(temp->left);
+                  if (temp->right)
+                        queue.enqueue(temp->right);
+
+                  op(temp->data);
+                  queue.dequeue();
+            }
+      }
       void BFStraverse(void (*op)(data_type&, void*), void* v) {
             Queue_LinkedList<node*> queue;
             queue.enqueue(root);
