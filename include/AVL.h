@@ -10,6 +10,7 @@ namespace data
 {
 template <class data_type>
 class AVL {
+    protected:
       struct node
       {
             enum class BF : int
@@ -161,6 +162,7 @@ class AVL {
       node*  root;
       size_t _size;
 
+    private:
       // method
       void insert(node*& n, data_type d) {
             if (n == NULL) {
@@ -222,6 +224,16 @@ class AVL {
 
     public:
       // what user use
+
+      AVL() {
+            _size = 0;
+            root  = nullptr;
+      }
+
+      ~AVL() {
+            while (!isEmpty())
+                  remove(root->data);
+      }
 
       inline size_t size() const {
             return _size;
