@@ -262,6 +262,9 @@ class AVL {
       }
 
       void BFStraverse(void (*op)(data_type&)) {
+            if (isEmpty())
+                  return;
+
             Queue_LinkedList<node*> queue;
             queue.enqueue(root);
 
@@ -278,6 +281,9 @@ class AVL {
             }
       }
       void BFStraverse(void (*op)(data_type&, void*), void* v) {
+            if (isEmpty())
+                  return;
+
             Queue_LinkedList<node*> queue;
             queue.enqueue(root);
 
