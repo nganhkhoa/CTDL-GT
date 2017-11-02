@@ -9,7 +9,6 @@ namespace lab
 {
       PhoneDatabase* PhoneDatabase::_phonedatabase = nullptr;
 
-      void DeletePhone() {}
       void InsertNewPhone() {
             std::cout << "Add new phone number\n\n";
 
@@ -52,13 +51,111 @@ namespace lab
 
       void Display(data::SinglyLinkedList<contact*>* list) {
             int i = 1;
+            std::cout << "id\tName\t\tPhone\n";
             for (contact* c : *list) {
-                  std::cout << i++ << ". " << c->name << ": " << c->phone
+                  std::cout << i++ << ".\t" << c->name << "\t\t" << c->phone
                             << "\n";
             }
+            std::cout << i << ". Return\n";
       }
 
-      void ChooseRecord(contact* c) {}
+      void ChangeNumber(contact* c) {
+            clearscreen();
+            std::cout << "Old number: " << c->phone << "\n";
+            std::cout << "New number: ";
+            char* newNumber = new char[21];
+            std::cin.getline(newNumber, 21);
+            std::cout << "Change number (y/n)? ";
+
+            char confirm = 'n';
+            std::cin >> confirm;
+            std::cin.ignore();
+
+            if (confirm == 'y' || confirm == 'Y')
+                  strcpy(c->phone, newNumber);
+            delete[] newNumber;
+            newNumber = nullptr;
+            return;
+      }
+
+      void ChangeName(contact* c) {
+            clearscreen();
+            std::cout << "Old name: " << c->name << "\n";
+            std::cout << "New name: ";
+            char* newName = new char[21];
+            std::cin.getline(newName, 21);
+            std::cout << "Change name (y/n)? ";
+
+            char confirm = 'n';
+            std::cin >> confirm;
+            std::cin.ignore();
+
+            if (confirm == 'y' || confirm == 'Y')
+                  strcpy(c->name, newName);
+            delete[] newName;
+            newName = nullptr;
+            return;
+      }
+
+      void DeleteRecord(contact* c) {
+            clearscreen();
+            std::cout << "Are you sure to delete this person?\n";
+            std::cout << c->name << ": " << c->phone << "\n";
+            std::cout << "Confirm (y/n)? ";
+            char confirm = 'n';
+            std::cin >> confirm;
+            std::cin.ignore();
+
+            if (confirm == 'n' || confirm == 'N')
+                  return;
+
+            contact deleteThis = *c;
+
+            auto                phonedatabase = PhoneDatabase::phonedatabase();
+            data::AVL<contact>* phonebook     = phonedatabase->phonebook();
+
+            phonebook->remove(deleteThis);
+
+            std::cout << "Person removed\n";
+            pausescreen();
+      }
+
+      void ChooseRecord(contact* c) {
+            while (true) {
+                  clearscreen();
+                  std::cout << c->name << ": " << c->phone << "\n";
+                  std::cout << "Choose what to do with this record\n";
+
+                  std::cout << "1. Call\n";
+                  std::cout << "2. Change number\n";
+                  std::cout << "3. Change name\n";
+                  std::cout << "4. Delete\n";
+                  std::cout << "5. Return\n";
+
+                  int choice = 0;
+                  std::cin >> choice;
+                  std::cin.ignore();
+
+                  switch (choice) {
+                        case 1:
+                              break;
+                        case 2:
+                              ChangeNumber(c);
+                              break;
+                        case 3:
+                              ChangeName(c);
+                              break;
+                        case 4:
+                              DeleteRecord(c);
+                              // deleted, nothing to do more
+                              return;
+                        case 5:
+                              return;
+                        default:
+                              return;
+                  }
+            }
+      }
 
       struct Result
       {
@@ -74,7 +171,7 @@ namespace lab
                               break;
                         }
                         if (c[i] >= 'A' && c[i] <= 'Z')
-                              searchString[i] = c[i] - 'A';
+                              searchString[i] = 'a' + c[i] - 'A';
                         else
                               searchString[i] = c[i];
                   }
@@ -84,6 +181,7 @@ namespace lab
 
             ~Result() {
                   delete list;
+                  delete[] searchString;
                   searchString = nullptr;
                   list         = nullptr;
             }
@@ -133,7 +231,6 @@ namespace lab
             while (true) {
                   clearscreen();
                   Display(result->list);
-                  std::cout << "Press 0 to return\n";
                   std::cout << "Choose record: ";
 
                   int i = 0;
@@ -144,7 +241,9 @@ namespace lab
                         break;
                   if (i > result->list->size())
                         break;
+
                   ChooseRecord((*result->list)[i - 1]);
+                  break;
             }
 
             delete result;
