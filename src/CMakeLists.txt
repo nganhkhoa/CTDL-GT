@@ -15,8 +15,11 @@ add_library(tutlab
 
 add_library(labtest
     "test1.cpp")
+
+add_library(fun
+    "PhoneBook.cpp")
 # add libs names here
-set (allLibs "tutlab" "labtest")
+set (allLibs "tutlab" "labtest" "fun")
 
 if (TEST)
 
