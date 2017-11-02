@@ -56,7 +56,7 @@ namespace lab
                   std::cout << i++ << ".\t" << c->name << "\t\t" << c->phone
                             << "\n";
             }
-            std::cout << i << ". Return\n";
+            std::cout << i << ".\tReturn\n";
       }
 
       void ChangeNumber(contact* c) {
@@ -157,6 +157,45 @@ namespace lab
             }
       }
 
+      void ShowListWithOption(data::SinglyLinkedList<contact*>* list) {
+            while (true) {
+                  clearscreen();
+                  Display(list);
+                  std::cout << "Choose record: ";
+
+                  int i = 0;
+                  std::cin >> i;
+                  std::cin.ignore();
+
+                  if (i <= 0)
+                        break;
+                  if (i > list->size())
+                        break;
+
+                  ChooseRecord((*list)[i - 1]);
+                  return;
+            }
+      }
+
+      void getList(contact& c, void* v) {
+            auto listRecord = (data::SinglyLinkedList<contact*>*) v;
+            listRecord->insertHead(&c);
+      }
+
+      void BrowsePhoneBook() {
+            data::SinglyLinkedList<contact*>* listRecord =
+               new data::SinglyLinkedList<contact*>();
+            auto                phonedatabase = PhoneDatabase::phonedatabase();
+            data::AVL<contact>* phonebook     = phonedatabase->phonebook();
+
+            phonebook->BFStraverse(getList, listRecord);
+            ShowListWithOption(listRecord);
+            delete listRecord;
+            listRecord    = nullptr;
+            phonedatabase = nullptr;
+            phonebook     = nullptr;
+      }
+
       struct Result
       {
             data::SinglyLinkedList<contact*>* list;
@@ -228,23 +267,7 @@ namespace lab
                   return;
             }
 
-            while (true) {
-                  clearscreen();
-                  Display(result->list);
-                  std::cout << "Choose record: ";
-
-                  int i = 0;
-                  std::cin >> i;
-                  std::cin.ignore();
-
-                  if (i <= 0)
-                        break;
-                  if (i > result->list->size())
-                        break;
-
-                  ChooseRecord((*result->list)[i - 1]);
-                  break;
-            }
+            ShowListWithOption(result->list);
 
             delete result;
             result        = nullptr;
@@ -328,9 +351,10 @@ namespace lab
 
                   std::cout << "Please choose an option\n\n";
 
-                  std::cout << "1. Search\n";
-                  std::cout << "2. New number\n";
-                  std::cout << "3. Exit\n";
+                  std::cout << "1. Browse\n";
+                  std::cout << "2. Search\n";
+                  std::cout << "3. New number\n";
+                  std::cout << "4. Exit\n";
 
                   int choice = 0;
                   std::cin >> choice;
@@ -339,12 +363,15 @@ namespace lab
                   clearscreen();
                   switch (choice) {
                         case 1:
-                              SearchPhoneBook();
+                              BrowsePhoneBook();
                               break;
                         case 2:
+                              SearchPhoneBook();
+                              break;
+                        case 3:
                               InsertNewPhone();
                               break;
-                        case 3: {
+                        case 4: {
                               WritePhoneBook();
 
                               auto phonedatabase =
