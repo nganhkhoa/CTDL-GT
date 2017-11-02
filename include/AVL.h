@@ -12,7 +12,6 @@ template <class data_type>
 class AVL {
       struct node
       {
-
             enum class BF : int
             {
                   // balance is calculated by
@@ -42,11 +41,15 @@ class AVL {
             }
 
             bool oneChild() {
-                  return left || right;
+                  if (left && !right)
+                        return true;
+                  if (right && !left)
+                        return true;
+                  return false;
             }
 
             bool noChild() {
-                  return !oneChild();
+                  return !left && !right;
             }
 
             bool twoChild() {
@@ -171,7 +174,6 @@ class AVL {
             else {
                   insert(n->right, d);
             }
-
             n->resetNode();
             n = n->balanceNode();
       }
@@ -190,7 +192,7 @@ class AVL {
             else {
                   if (n->noChild()) {
                         delete n;
-                        n = NULL;
+                        n = nullptr;
                   }
 
                   else if (n->twoChild()) {
