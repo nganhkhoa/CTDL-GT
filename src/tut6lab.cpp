@@ -57,9 +57,26 @@ namespace lab
             searchList = NULL;
       }
 
+      void SumPathTest() {
+            SumPathTree* tree = new SumPathTree();
+            tree->insert(7);
+            tree->insert(4);
+            tree->insert(12);
+            tree->insert(-1);
+            tree->insert(10);
+            tree->insert(20);
+
+            std::cout << tree->SumPath(10) << "\n";
+            tree->PrintPath();
+
+            delete tree;
+            tree = nullptr;
+      }
+
       void labTest() {
             treeTest();
-            fun::PhoneBook();
+            SumPathTest();
+            // fun::PhoneBook();
       }
 }    // namespace lab
 namespace tut
