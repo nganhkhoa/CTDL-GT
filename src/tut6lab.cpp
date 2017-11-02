@@ -49,7 +49,109 @@ namespace lab
             std::cout << "Press any key to continue\n";
             pausescreen();
       }
-      void SearchPhoneBook() {}
+
+      void Display(data::SinglyLinkedList<contact*>* list) {
+            int i = 1;
+            for (contact* c : *list) {
+                  std::cout << i++ << ". " << c->name << ": " << c->phone
+                            << "\n";
+            }
+      }
+
+      void ChooseRecord(contact* c) {}
+
+      struct Result
+      {
+            data::SinglyLinkedList<contact*>* list;
+            char*                             searchString;
+
+            Result(const char* c) {
+
+                  searchString = new char[strlen(c)];
+                  for (int i = 0;; i++) {
+                        if (c[i] == '\0') {
+                              searchString[i] = '\0';
+                              break;
+                        }
+                        if (c[i] >= 'A' && c[i] <= 'Z')
+                              searchString[i] = c[i] - 'A';
+                        else
+                              searchString[i] = c[i];
+                  }
+
+                  list = new data::SinglyLinkedList<contact*>();
+            }
+
+            ~Result() {
+                  delete list;
+                  searchString = nullptr;
+                  list         = nullptr;
+            }
+      };
+
+      void search(contact& c, void* v) {
+            Result* result = (Result*) v;
+
+            char* name = new char[strlen(c.name)];
+
+            for (int i = 0;; i++) {
+                  if (c.name[i] == '\0') {
+                        name[i] = '\0';
+                        break;
+                  }
+                  if (c.name[i] >= 'A' && c.name[i] <= 'Z')
+                        name[i] = 'a' + c.name[i] - 'A';
+                  else
+                        name[i] = c.name[i];
+            }
+
+            if (strcmp(name, result->searchString) == 0)
+                  result->list->insertHead(&c);
+      }
+
+      void SearchPhoneBook() {
+            // getAsyncKeyPress
+            // should prompt result when a key is press
+            // because it's funnier
+
+            char* searchString = new char[21];
+
+            std::cout << "Search: ";
+            std::cin.getline(searchString, 21);
+
+            auto                phonedatabase = PhoneDatabase::phonedatabase();
+            data::AVL<contact>* phonebook     = phonedatabase->phonebook();
+            Result*             result        = new Result(searchString);
+            phonebook->BFStraverse(search, result);
+
+            if (result->list->isEmpty()) {
+                  std::cout << "Nothing found\n";
+                  pausescreen();
+                  return;
+            }
+
+            while (true) {
+                  clearscreen();
+                  Display(result->list);
+                  std::cout << "Press 0 to return\n";
+                  std::cout << "Choose record: ";
+
+                  int i = 0;
+                  std::cin >> i;
+                  std::cin.ignore();
+
+                  if (i <= 0)
+                        break;
+                  if (i > result->list->size())
+                        break;
+                  ChooseRecord((*result->list)[i - 1]);
+            }
+
+            delete result;
+            result        = nullptr;
+            phonedatabase = nullptr;
+            phonebook     = nullptr;
+      }
       void write(contact& c) {
             std::ofstream file("phonebook.txt", std::ios::app);
             file << c.name << ", " << c.phone << "\n";
