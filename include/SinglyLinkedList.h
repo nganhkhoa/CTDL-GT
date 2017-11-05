@@ -73,6 +73,23 @@ class SinglyLinkedList {
             return size() == 0;
       }
 
+
+      void insertSort(const data_type& d) {
+            if (isEmpty()) {
+                  insertHead(d);
+                  return;
+            }
+
+            int idx = 0;
+            for (data_type& data : *this) {
+                  if (data > d)
+                        break;
+                  else
+                        idx++;
+            }
+            insertAt(idx, d);
+      }
+
       void insertHead(const data_type& d) {
             if (isEmpty())
                   insertEnd(d);
@@ -84,11 +101,21 @@ class SinglyLinkedList {
             _tail       = _tail->next;
             _size++;
       }
+
+      // index starts at 0
       void insertAt(size_t place, const data_type& d) {
-            auto it = begin();
-            while (--place)
-                  ++it;
-            insert(it, d);
+            if (place == 0)
+                  insertHead(d);
+
+            else if (place == size())
+                  insertEnd(d);
+
+            else {
+                  auto it = begin();
+                  while (--place)
+                        ++it;
+                  insert(it, d);
+            }
       }
       void removeHead() {
             if (isEmpty())
