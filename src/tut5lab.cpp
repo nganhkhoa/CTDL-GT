@@ -240,11 +240,11 @@ int IntNode::Height() {
 
       int leftHeight = 0;
       if (left)
-            left->Height() + 1;
+            leftHeight = left->Height() + 1;
 
       int rightHeight = 0;
       if (right)
-            right->Height() + 1;
+            rightHeight = right->Height() + 1;
 
       return leftHeight > rightHeight ? leftHeight : rightHeight;
 }
