@@ -5,6 +5,7 @@
 #include <Stack_LinkedList.h>
 #include <Queue_LinkedList.h>
 #include <BinaryTree.h>
+#include <BTree.h>
 
 #include <iostream>
 namespace fun
@@ -100,6 +101,14 @@ inline void BinaryTreeTest() {
       myTree->remove(21);
 
       delete myTree;
+}
+
+inline void BTreeTest() {
+      data::BTree<int, 3>* tree = new data::BTree<int, 3>();
+      tree->insert(0);
+      tree->insert(1);
+      tree->insert(2);
+      tree->insert(3);
 }
 }
 #endif

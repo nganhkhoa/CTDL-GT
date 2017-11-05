@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
       // week5::labTest();
       // week5::tutTest();
 
-      week6::lab::labTest();
+      // week6::lab::labTest();
       // week6::tut::tutTest();
 
       // test1::L01::Test();
@@ -69,6 +69,8 @@ int main(int argc, char** argv) {
       // fun::Stack_LinkedListTest();
       // fun::Queue_LinkedListTest();
       // fun::BinaryTreeTest();
+      // fun::AVLTest();
+      fun::BTreeTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
