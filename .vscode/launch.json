@@ -11,6 +11,7 @@
 			"cwd": "${workspaceRoot}/bin",
 			"environment": [],
 			"externalConsole": true,
+			"filterStderr": true,
 			"linux": {
 				"program": "${workspaceRoot}/bin/project",
 				"MIMode": "gdb",
