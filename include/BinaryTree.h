@@ -7,6 +7,7 @@ namespace data
 {
 template <class data_type>
 class BinaryTree {
+    protected:
       struct node
       {
             data_type data;
