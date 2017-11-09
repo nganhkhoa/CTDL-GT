@@ -70,7 +70,8 @@ int main(int argc, char** argv) {
       // fun::Queue_LinkedListTest();
       // fun::BinaryTreeTest();
       // fun::AVLTest();
-      fun::BTreeTest();
+      // fun::BTreeTest();
+      fun::HeapTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

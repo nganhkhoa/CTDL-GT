@@ -6,6 +6,7 @@
 #include <Queue_LinkedList.h>
 #include <BinaryTree.h>
 #include <BTree.h>
+#include <Heap.h>
 
 #include <iostream>
 namespace fun
@@ -109,6 +110,19 @@ inline void BTreeTest() {
       tree->insert(1);
       tree->insert(2);
       tree->insert(3);
+}
+
+
+inline void HeapTest() {
+      data::Heap<int> heap;
+      heap.insert(0);
+      heap.insert(1);
+      heap.insert(2);
+      heap.insert(3);
+      heap.insert(4);
+      std::cout << heap << std::endl;
+      heap.remove(4);
+      std::cout << heap << std::endl;
 }
 }
 #endif
