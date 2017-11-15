@@ -18,6 +18,7 @@
 #include <tut6lab.h>
 
 #include <test1.h>
+#include <test2.h>
 
 #include <fun.h>
 
@@ -65,13 +66,16 @@ int main(int argc, char** argv) {
       // test1::L01::Test();
       // test1::L02::Test();
 
+      // test2::L01::Test();
+      test2::L02::Test();
+
       // fun::SinglyLinkedListTest();
       // fun::Stack_LinkedListTest();
       // fun::Queue_LinkedListTest();
       // fun::BinaryTreeTest();
       // fun::AVLTest();
       // fun::BTreeTest();
-      fun::HeapTest();
+      // fun::HeapTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);

@@ -14,7 +14,8 @@ add_library(tutlab
     "tut6lab.cpp")
 
 add_library(labtest
-    "test1.cpp")
+    "test1.cpp"
+    "test2.cpp")
 
 add_library(fun
     "PhoneBook.cpp")
