@@ -10,6 +10,11 @@ namespace L02
 {
       void Test();
 }
+
+namespace L01
+{
+      void Test();
+}
 }
 
 #endif

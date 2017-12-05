@@ -3,6 +3,7 @@
 
 #include <SinglyLinkedList.h>
 #include <iostream>
+#include <cmath>
 
 namespace data
 {
@@ -12,7 +13,7 @@ class BTree {
 
       struct node
       {
-            // 12 bytes
+            // 24 bytes
             // list have method to insert without sorting
             SinglyLinkedList<data_type>* keys;
             node**                       children;
@@ -40,6 +41,10 @@ class BTree {
                   return size() > capacity;
             }
 
+            bool underflow() const {
+                  return size() < std::ceil((capacity + 1) / 2) - 1;
+            }
+
             void insert(data_type& d) {
                   keys->insertSort(d);
             }
@@ -47,9 +52,13 @@ class BTree {
             void remove() {
                   keys->removeHead();
             }
+
+            node* rebalance() {
+                  return nullptr;
+            }
       };
 
-      // 16 bytes
+      // 32 bytes
       // small bits
       node*  root;
       size_t _size;       // current elements
@@ -113,6 +122,8 @@ class BTree {
             }
 
             insert(n->children[idx], d);
+
+            n = n->rebalance();
       }
 
     public:

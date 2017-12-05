@@ -63,11 +63,14 @@ int main(int argc, char** argv) {
       // week6::lab::labTest();
       // week6::tut::tutTest();
 
+      // week6::lab::labTest();
+      // week6::tut::tutTest();
+
       // test1::L01::Test();
       // test1::L02::Test();
 
       // test2::L01::Test();
-      test2::L02::Test();
+      // test2::L02::Test();
 
       // fun::SinglyLinkedListTest();
       // fun::Stack_LinkedListTest();
