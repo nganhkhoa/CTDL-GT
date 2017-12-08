@@ -7,6 +7,7 @@
 #include <BinaryTree.h>
 #include <BTree.h>
 #include <Heap.h>
+#include <Hash.h>
 
 #include <iostream>
 namespace fun
@@ -123,6 +124,23 @@ inline void HeapTest() {
       std::cout << heap << std::endl;
       heap.remove(4);
       std::cout << heap << std::endl;
+}
+
+inline void HashTest() {
+      data::HashFunction<int> hash;
+
+      std::cout << hash << std::endl;
+
+      hash.insert(0);
+      hash.insert(1);
+      hash.insert(2);
+      hash.insert(3);
+
+      std::cout << hash << std::endl;
+
+      hash.insert(2);
+
+      std::cout << hash << std::endl;
 }
 }
 #endif

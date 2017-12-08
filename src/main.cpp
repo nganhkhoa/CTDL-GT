@@ -79,6 +79,7 @@ int main(int argc, char** argv) {
       // fun::AVLTest();
       // fun::BTreeTest();
       // fun::HeapTest();
+      fun::HashTest();
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
