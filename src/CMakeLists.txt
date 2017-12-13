@@ -19,8 +19,12 @@ add_library(labtest
 
 add_library(fun
     "PhoneBook.cpp")
+
+add_library(data
+    "Coordinate.cpp")
+
 # add libs names here
-set (allLibs "tutlab" "labtest" "fun")
+set (allLibs "tutlab" "labtest" "fun" "data")
 
 if (TEST)
 

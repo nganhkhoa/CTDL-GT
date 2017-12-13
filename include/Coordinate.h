@@ -55,10 +55,5 @@ class Coordinate {
       static Coordinate j;
       static Coordinate k;
 };
-
-Coordinate Coordinate::i(1, 0, 0);
-Coordinate Coordinate::j(0, 1, 0);
-Coordinate Coordinate::k(0, 0, 1);
-
 }    // namespace data
 #endif

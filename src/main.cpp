@@ -44,42 +44,125 @@ int main(int argc, char** argv) {
       console->info("Logging system initialized");
 #endif    // DEBUG
 
-      // week1::lab::labTest();
-      // week1::tut::tutTest();
+      int choice = 0;
 
-      // week2::lab::labTest();
-      // week2::tut::tutTest();
-      // week2::onclass::onclassTest();
+      while (true) {
+            clearscreen();
 
-      // week3::lab::labTest();
-      // week3::tut::tutTest();
+            cout << "Chose which to run:\n";
+            cout << "1.  Week 1\n";
+            cout << "2.  Week 2\n";
+            cout << "3.  Week 3\n";
+            cout << "4.  Week 4\n";
+            cout << "5.  Week 5\n";
+            cout << "6.  Week 6\n";
+            cout << "7.  Week 7\n";
+            cout << "8.  Week 8\n";
+            cout << "9.  Test 1\n";
+            cout << "10. Test 2\n";
+            cout << "11. Data structure Test\n";
+            cout << "12. Exit\n";
 
-      // week4::lab::labTest();
-      // week4::tut::tutTest();
+            cout << "\n\t>> ";
+            cin >> choice;
+            cin.ignore();
 
-      // week5::labTest();
-      // week5::tutTest();
+            console->info("Input {}", choice);
 
-      // week6::lab::labTest();
-      // week6::tut::tutTest();
+            switch (choice) {
+                  case 1:
+                        week1::lab::labTest();
+                        week1::tut::tutTest();
+                        break;
+                  case 2:
+                        week2::lab::labTest();
+                        week2::tut::tutTest();
+                        week2::onclass::onclassTest();
+                        break;
+                  case 3:
+                        week3::lab::labTest();
+                        week3::tut::tutTest();
+                        break;
+                  case 4:
+                        week4::lab::labTest();
+                        week4::tut::tutTest();
+                        break;
+                  case 5:
+                        week5::labTest();
+                        week5::tutTest();
+                        break;
+                  case 6:
+                        week6::lab::labTest();
+                        // week6::tut::tutTest();
+                        break;
+                  case 7:
+                        break;
+                  case 8:
+                        break;
+                  case 9:
+                        test1::L01::Test();
+                        test1::L02::Test();
+                        break;
+                  case 10:
+                        test2::L01::Test();
+                        test2::L02::Test();
+                        break;
+                  case 11:
 
-      // week6::lab::labTest();
-      // week6::tut::tutTest();
+                        cout << "Chose which data structure:\n";
+                        cout << "1.  Linked List\n";
+                        cout << "2.  Stack\n";
+                        cout << "3.  Queue\n";
+                        cout << "4.  Binary Seach Tree\n";
+                        cout << "5.  AVL Tree (comming soon)\n";
+                        cout << "6.  BTree (not complete)\n";
+                        cout << "7.  Heap\n";
+                        cout << "8.  Hash\n";
+                        cout << "9.  Graph (not complete)\n";
+                        cout << "10. Exit\n";
+                        cout << "\n\t>> ";
 
-      // test1::L01::Test();
-      // test1::L02::Test();
+                        cin >> choice;
+                        cin.ignore();
+                        console->info("Choice made {}", choice);
 
-      // test2::L01::Test();
-      // test2::L02::Test();
-
-      // fun::SinglyLinkedListTest();
-      // fun::Stack_LinkedListTest();
-      // fun::Queue_LinkedListTest();
-      // fun::BinaryTreeTest();
-      // fun::AVLTest();
-      // fun::BTreeTest();
-      // fun::HeapTest();
-      fun::HashTest();
+                        switch (choice) {
+                              case 1:
+                                    fun::SinglyLinkedListTest();
+                                    break;
+                              case 2:
+                                    fun::Stack_LinkedListTest();
+                                    break;
+                              case 3:
+                                    fun::Queue_LinkedListTest();
+                                    break;
+                              case 4:
+                                    fun::BinaryTreeTest();
+                                    break;
+                              case 5:
+                                    // fun::AVLTest();
+                                    break;
+                              case 6:
+                                    fun::BTreeTest();
+                                    break;
+                              case 7:
+                                    fun::HeapTest();
+                                    break;
+                              case 8:
+                                    fun::HashTest();
+                                    break;
+                              case 9:
+                                    fun::GraphTest();
+                                    break;
+                              default:
+                                    break;
+                        }
+                  case 12:
+                        return 0;
+                  default:
+                        break;
+            }
+      }
       return 0;
 #else    // UNITTEST
       testing::InitGoogleTest(&argc, argv);
