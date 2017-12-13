@@ -24,12 +24,12 @@ namespace lab
                   const data::Coordinate two(_col - 1, _row - 1);
 
                   if (
-                     (*this)[zero + data::i_vector] == -1 &&
-                     (*this)[zero - data::j_vector] == -1)
+                     (*this)[zero + data::Coordinate::i] == -1 &&
+                     (*this)[zero - data::Coordinate::j] == -1)
                         return;
                   if (
-                     (*this)[two - data::i_vector] == -1 &&
-                     (*this)[two + data::j_vector] == -1)
+                     (*this)[two - data::Coordinate::i] == -1 &&
+                     (*this)[two + data::Coordinate::j] == -1)
                         return;
 
                   // std::cout << *this << std::endl;
@@ -58,8 +58,8 @@ namespace lab
                         ans = new data::LinkedList<data::Coordinate>(c);
                   }
 
-                  const data::Coordinate rightTile = c + data::i_vector;
-                  const data::Coordinate downTile  = c - data::j_vector;
+                  const data::Coordinate rightTile = c + data::Coordinate::i;
+                  const data::Coordinate downTile  = c - data::Coordinate::j;
 
                   const int rightData = (*this)[rightTile];
                   const int downData  = (*this)[downTile];
@@ -116,7 +116,7 @@ namespace lab
                   _value[size * size - 1] = 2;
 
                   int tiles[4] = {-1, 1, 1, 1};
-                  for (int i      = 1; i < size * size - 1; i++)
+                  for (int i = 1; i < size * size - 1; i++)
                         _value[i] = tiles[rand() % 4];    // random 1 and -1
 
                   solve();
@@ -190,13 +190,13 @@ namespace tut
       bool isPrime(int);
 
       template <int n>
-      void          onePrime(int[n]);
-      void          onePrime(int*, int);
+      void onePrime(int[n]);
+      void onePrime(int*, int);
 
       template <int n>
-      void          allPrime(int[n]);
-      void          allPrime(int*, int);
-      int           Fibonacci(int);
+      void allPrime(int[n]);
+      void allPrime(int*, int);
+      int  Fibonacci(int);
 
 
       struct node

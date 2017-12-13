@@ -50,10 +50,15 @@ class Coordinate {
       const Coordinate operator-(const Coordinate& c) const {
             return Coordinate(*this) -= c;
       }
+
+      static Coordinate i;
+      static Coordinate j;
+      static Coordinate k;
 };
 
-const Coordinate i_vector(1, 0, 0);
-const Coordinate j_vector(0, 1, 0);
-const Coordinate k_vector(0, 0, 1);
+Coordinate Coordinate::i(1, 0, 0);
+Coordinate Coordinate::j(0, 1, 0);
+Coordinate Coordinate::k(0, 0, 1);
+
 }    // namespace data
 #endif
