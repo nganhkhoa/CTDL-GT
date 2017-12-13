@@ -11,7 +11,7 @@
 *.out
 *.synctex.gz
 
-
+.vscode/.cmaketools.json
 
 # exception
 !cppcheck.log
